@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MyClean Rennes — Aperçu</title>
+<style>
+  :root{
+    --ink:#0a0e1a; --ink950:#060912; --surface:#111726; --surface-light:#1a2236;
+    --border:#27314a; --gold:#d4af37; --gold-light:#e8c766; --accent:#2dd4bf; --accent-light:#5eead4;
+    --text:#cfd6e4; --muted:#aeb6c7; --dim:#7e879b;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    background:var(--ink); color:var(--text); line-height:1.6;
+    background-image:
+      radial-gradient(70% 50% at 50% -10%, rgba(45,212,191,.10) 0%, rgba(10,14,26,0) 60%),
+      radial-gradient(50% 40% at 90% 10%, rgba(212,175,55,.07) 0%, rgba(10,14,26,0) 60%);
+    background-attachment:fixed;
+  }
+  h1,h2,h3,h4{color:#fff;font-weight:800;letter-spacing:-.02em;line-height:1.15}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+  .section{padding:90px 0}
+  .grad{background:linear-gradient(135deg,#e8c766,#d4af37 50%,#b08d1f);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);background:rgba(17,23,38,.6);
+    padding:6px 16px;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;padding:13px 26px;
+    font-size:14px;font-weight:700;cursor:pointer;border:none;transition:.25s}
+  .btn-primary{background:linear-gradient(135deg,#e8c766,#d4af37 50%,#b08d1f);color:#060912;box-shadow:0 0 40px -12px rgba(212,175,55,.45)}
+  .btn-primary:hover{filter:brightness(1.06)}
+  .btn-accent{background:var(--accent);color:#060912}
+  .btn-ghost{border:1px solid var(--border);background:rgba(17,23,38,.4);color:#fff}
+  .btn-ghost:hover{border-color:rgba(45,212,191,.5);background:var(--surface-light)}
+  .card{border:1px solid var(--border);background:rgba(17,23,38,.7);border-radius:18px;padding:26px;box-shadow:0 20px 50px -20px rgba(0,0,0,.7)}
+  .muted{color:var(--muted)} .dim{color:var(--dim)}
+  .center{text-align:center} .mx-auto{margin-left:auto;margin-right:auto}
+  .maxw{max-width:640px}
+  .pill{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:14px;background:rgba(45,212,191,.1);color:var(--accent)}
+  .ph{position:relative;border-radius:22px;overflow:hidden;border:1px solid var(--border);box-shadow:0 20px 50px -20px rgba(0,0,0,.7);
+    display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.45);font-size:13px;letter-spacing:.1em;text-transform:uppercase}
+
+  /* Navbar */
+  header{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);background:rgba(6,9,18,.85);border-bottom:1px solid var(--border)}
+  nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .logo{display:flex;align-items:center;gap:8px;font-weight:800;font-size:18px;color:#fff}
+  .logo .mark{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,#e8c766,#d4af37 50%,#b08d1f);display:flex;align-items:center;justify-content:center;color:#060912;font-size:18px}
+  .menu{display:flex;gap:26px;list-style:none}
+  .menu a{font-size:14px;color:var(--muted)} .menu a:hover{color:#fff}
+  .nav-cta{display:flex;align-items:center;gap:12px}
+  @media(max-width:880px){.menu,.nav-cta .phone{display:none}}
+
+  /* Hero */
+  .hero{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding:70px 0 40px}
+  .hero h1{font-size:52px;margin:22px 0}
+  .hero p{font-size:18px;max-width:560px}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
+  .hero-check{display:flex;gap:22px;flex-wrap:wrap;margin-top:26px;font-size:14px;color:var(--muted)}
+  .hero-check span::before{content:"✓ ";color:var(--accent);font-weight:800}
+  .hero-img{aspect-ratio:4/5}
+  .badge-float{position:absolute;bottom:-18px;left:-14px;display:flex;align-items:center;gap:10px;border:1px solid var(--border);
+    background:rgba(6,9,18,.92);padding:12px 18px;border-radius:16px;backdrop-filter:blur(8px)}
+  .stars{color:var(--gold);letter-spacing:2px}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;border:1px solid var(--border);background:rgba(17,23,38,.5);
+    border-radius:18px;padding:24px;margin-top:50px}
+  .stats .v{font-size:30px;font-weight:800} .stats .l{font-size:13px;color:var(--muted);margin-top:4px}
+  @media(max-width:880px){.hero{grid-template-columns:1fr}.hero h1{font-size:38px}.stats{grid-template-columns:repeat(2,1fr)}}
+
+  /* grids */
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  @media(max-width:880px){.grid2{grid-template-columns:1fr}.grid4{grid-template-columns:repeat(2,1fr)}.grid3{grid-template-columns:1fr}}
+  ul.points{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+  ul.points li{font-size:14px;display:flex;gap:10px}
+  ul.points li::before{content:"✓";color:var(--accent);font-weight:800}
+  @media(max-width:880px){ul.points{grid-template-columns:1fr}}
+
+  /* Formules */
+  .price-card{display:flex;flex-direction:column;border:1px solid var(--border);background:rgba(17,23,38,.7);border-radius:18px;padding:28px;height:100%}
+  .price-card.hl{border-color:rgba(212,175,55,.6);background:var(--surface-light);box-shadow:0 0 40px -12px rgba(212,175,55,.45);position:relative}
+  .tag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#e8c766,#d4af37 50%,#b08d1f);
+    color:#060912;font-size:12px;font-weight:800;padding:4px 16px;border-radius:999px}
+  .price{font-size:38px;font-weight:800;color:#fff;margin:16px 0}
+  .price small{font-size:14px;font-weight:400;color:var(--muted)}
+  .feat{list-style:none;display:grid;gap:12px;margin:8px 0 22px;flex:1}
+  .feat li{font-size:14px;display:flex;gap:10px} .feat li::before{content:"✓";color:var(--accent);font-weight:800}
+  .hl .feat li::before{color:var(--gold)}
+
+  /* Slider */
+  .ba{position:relative;aspect-ratio:16/10;border-radius:22px;overflow:hidden;border:1px solid var(--border);user-select:none;max-width:760px;margin:0 auto}
+  .ba .layer{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:15px;letter-spacing:.15em;text-transform:uppercase;color:#fff}
+  .ba .after{background:linear-gradient(135deg,#0f766e,#2dd4bf)}
+  .ba .before{background:linear-gradient(135deg,#3a2f1a,#6b5733);clip-path:inset(0 50% 0 0)}
+  .ba .lab{position:absolute;top:14px;padding:4px 12px;border-radius:999px;font-size:11px;font-weight:800}
+  .ba .lab-a{right:14px;background:var(--accent);color:#060912}
+  .ba .lab-b{left:14px;background:rgba(6,9,18,.8);color:#fff}
+  .ba .handle{position:absolute;top:0;bottom:0;left:50%;width:2px;background:#fff;transform:translateX(-50%);z-index:5}
+  .ba .knob{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:999px;
+    border:2px solid #fff;background:rgba(6,9,18,.9);color:#fff;display:flex;align-items:center;justify-content:center;cursor:ew-resize}
+  .ba input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;z-index:10}
+
+  /* Avis */
+  blockquote{font-size:14px;color:var(--text);margin:10px 0}
+
+  /* FAQ */
+  .faq-item{border:1px solid var(--border);background:rgba(17,23,38,.6);border-radius:16px;margin-bottom:12px;overflow:hidden}
+  .faq-item.open{border-color:rgba(45,212,191,.4);background:var(--surface-light)}
+  .faq-q{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 24px;cursor:pointer;font-weight:600;color:#fff}
+  .faq-plus{width:28px;height:28px;border-radius:999px;background:var(--border);color:#fff;display:flex;align-items:center;justify-content:center;flex:none;transition:.25s}
+  .faq-item.open .faq-plus{background:var(--accent);color:#060912;transform:rotate(45deg)}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;color:var(--muted);font-size:14px}
+  .faq-a div{padding:0 24px 18px}
+  .faq-item.open .faq-a{max-height:200px}
+
+  /* Form */
+  .steps{display:flex;align-items:center;justify-content:space-between;margin-bottom:30px}
+  .step{display:flex;flex-direction:column;align-items:center;gap:8px;flex:none}
+  .step .dot{width:40px;height:40px;border-radius:999px;border:2px solid var(--border);background:var(--surface);
+    color:var(--dim);display:flex;align-items:center;justify-content:center;font-weight:700}
+  .step.active .dot{border-color:var(--gold);background:linear-gradient(135deg,#e8c766,#d4af37 50%,#b08d1f);color:#060912}
+  .step.done .dot{border-color:var(--accent);background:var(--accent);color:#060912}
+  .step .lbl{font-size:12px;color:var(--dim)} .step.active .lbl{color:#fff}
+  .bar{height:2px;flex:1;background:var(--border);margin:0 8px;align-self:flex-start;margin-top:19px}
+  .bar.done{background:var(--accent)}
+  .opt{border:1px solid var(--border);background:var(--surface);border-radius:12px;padding:16px;font-weight:700;font-size:14px;cursor:pointer;color:var(--muted);text-align:center;transition:.2s}
+  .opt.sel{border-color:var(--accent);background:rgba(45,212,191,.1);color:#fff}
+  input.fld{width:100%;border:1px solid var(--border);background:rgba(6,9,18,.6);color:#fff;border-radius:12px;padding:12px 16px;margin-top:8px;font-size:15px;outline:none}
+  input.fld:focus{border-color:var(--accent)}
+  .estimate{border:1px solid rgba(212,175,55,.4);border-radius:14px;padding:20px;text-align:center;margin-top:20px}
+  .estimate .big{font-size:38px;font-weight:800;margin-top:4px}
+  .form-grid{display:grid;grid-template-columns:1fr 320px;gap:32px}
+  @media(max-width:880px){.form-grid{grid-template-columns:1fr}.steps{overflow-x:auto}}
+
+  /* WhatsApp */
+  .wa{position:fixed;bottom:20px;right:20px;z-index:60;display:flex;align-items:center;gap:8px;background:#25D366;color:#fff;
+    padding:13px 18px;border-radius:999px;font-weight:700;box-shadow:0 10px 30px -8px rgba(0,0,0,.6)}
+  .wa:hover{background:#1ebe5d}
+
+  footer{border-top:1px solid var(--border);background:var(--ink950);padding:54px 0 28px}
+  .fgrid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px}
+  @media(max-width:880px){.fgrid{grid-template-columns:1fr}}
+  footer h4{font-size:13px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px}
+  footer ul{list-style:none;display:grid;gap:8px} footer a{font-size:14px;color:var(--muted)} footer a:hover{color:#fff}
+  .fbot{border-top:1px solid var(--border);margin-top:40px;padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:12px;color:var(--dim)}
+  .note{background:rgba(45,212,191,.08);border:1px solid rgba(45,212,191,.25);border-radius:12px;padding:12px 16px;font-size:13px;color:var(--accent-light);margin:16px auto 0;max-width:760px;text-align:center}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <a href="#" class="logo"><span class="mark">✦</span> My<span class="grad">Clean</span></a>
+      <ul class="menu">
+        <li><a href="#a-propos">À propos</a></li>
+        <li><a href="#formules">Formules</a></li>
+        <li><a href="#avant-apres">Avant / Après</a></li>
+        <li><a href="#avis">Avis</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="tel:+33772396372" class="phone" style="font-size:14px;color:#fff">📞 07 72 39 63 72</a>
+        <a href="#contact" class="btn btn-primary">Devis gratuit</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="wrap">
+  <div class="hero">
+    <div>
+      <span class="eyebrow">★ Nettoyage premium · Rennes (35)</span>
+      <h1>Des espaces <span class="grad">impeccables</span>,<br>un service d'exception.</h1>
+      <p class="muted">MyClean Rennes accompagne particuliers et professionnels avec des prestations de nettoyage sur-mesure. Produits éco-responsables, équipe formée, satisfaction garantie.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">Obtenir un devis gratuit →</a>
+        <a href="tel:+33772396372" class="btn btn-ghost">📞 07 72 39 63 72</a>
+      </div>
+      <div class="hero-check"><span>Devis sous 24h</span><span>Sans engagement</span><span>Personnel assuré</span></div>
+    </div>
+    <div style="position:relative">
+      <div class="ph hero-img" style="background:linear-gradient(135deg,#16203a,#0f766e33)">Photo agent · placeholder</div>
+      <div class="badge-float"><span class="stars">★★★★★</span><div><div style="font-weight:800;color:#fff">4,9 / 5</div><div class="dim" style="font-size:12px">+500 clients satisfaits</div></div></div>
+    </div>
+  </div>
+  <div class="stats">
+    <div class="center"><div class="v grad">+500</div><div class="l">Interventions réalisées</div></div>
+    <div class="center"><div class="v grad">4,9/5</div><div class="l">Note moyenne clients</div></div>
+    <div class="center"><div class="v grad">100%</div><div class="l">Produits éco-responsables</div></div>
+    <div class="center"><div class="v grad">24h</div><div class="l">Devis sous 24 heures</div></div>
+  </div>
+</section>
+
+<!-- À PROPOS -->
+<section id="a-propos" class="section"><div class="wrap">
+  <div class="grid2">
+    <div class="ph" style="aspect-ratio:4/3;background:linear-gradient(135deg,#16203a,#d4af3722)">Photo équipe · placeholder</div>
+    <div>
+      <span class="eyebrow">À propos</span>
+      <h2 style="font-size:34px;margin:18px 0 14px">Votre partenaire propreté de confiance à Rennes</h2>
+      <p class="muted">MyClean Rennes est une entreprise locale spécialisée dans le nettoyage des particuliers et des professionnels. Notre mission : vous offrir un cadre de vie et de travail sain, avec un service fiable, ponctuel et soigné.</p>
+      <ul class="points">
+        <li>Intervention à domicile, en entreprise et sur chantiers</li>
+        <li>Matériel professionnel fourni et produits inclus</li>
+        <li>Personnel assuré et formé aux normes d'hygiène</li>
+        <li>Flexibilité des horaires, y compris le samedi</li>
+      </ul>
+    </div>
+  </div>
+  <div class="grid4" style="margin-top:60px">
+    <div class="card"><span class="pill">✦</span><h3 style="font-size:18px;margin:14px 0 8px">Équipe professionnelle</h3><p class="muted" style="font-size:14px">Des agents formés, assurés et discrets pour un résultat irréprochable.</p></div>
+    <div class="card"><span class="pill">🌿</span><h3 style="font-size:18px;margin:14px 0 8px">Produits éco-responsables</h3><p class="muted" style="font-size:14px">Respectueux de votre santé et de l'environnement.</p></div>
+    <div class="card"><span class="pill">📄</span><h3 style="font-size:18px;margin:14px 0 8px">Devis gratuit & rapide</h3><p class="muted" style="font-size:14px">Une estimation personnalisée sous 24h, sans engagement.</p></div>
+    <div class="card"><span class="pill">🛡️</span><h3 style="font-size:18px;margin:14px 0 8px">Satisfaction garantie</h3><p class="muted" style="font-size:14px">Si le résultat ne convient pas, nous revenons gratuitement.</p></div>
+  </div>
+</div></section>
+
+<!-- FORMULES -->
+<section id="formules" class="section"><div class="wrap">
+  <div class="center maxw mx-auto">
+    <span class="eyebrow">Formules & Tarifs</span>
+    <h2 style="font-size:34px;margin:18px 0 12px">Une formule adaptée à chaque besoin</h2>
+    <p class="muted">Des tarifs transparents et sans surprise. Un devis personnalisé reste gratuit et sans engagement.</p>
+  </div>
+  <div class="grid3" style="margin-top:54px">
+    <div class="price-card">
+      <h3 style="font-size:20px">Essentiel</h3><p class="muted" style="font-size:14px;margin-top:6px">Entretien régulier de votre logement ou bureau.</p>
+      <div class="price">25 €<small> / heure</small></div>
+      <ul class="feat"><li>Dépoussiérage des surfaces</li><li>Aspiration & lavage des sols</li><li>Nettoyage cuisine & sanitaires</li><li>Vidage des poubelles</li></ul>
+      <a href="#contact" class="btn btn-ghost">Choisir Essentiel →</a>
+    </div>
+    <div class="price-card hl">
+      <span class="tag">★ Le plus choisi</span>
+      <h3 style="font-size:20px">Confort</h3><p class="muted" style="font-size:14px;margin-top:6px">Un nettoyage approfondi pour un intérieur éclatant.</p>
+      <div class="price">30 €<small> / heure</small></div>
+      <ul class="feat"><li>Tout de la formule Essentiel</li><li>Nettoyage des vitres intérieures</li><li>Détartrage salle de bain & WC</li><li>Désinfection des points de contact</li><li>Entretien des électroménagers</li></ul>
+      <a href="#contact" class="btn btn-primary">Choisir Confort →</a>
+    </div>
+    <div class="price-card">
+      <h3 style="font-size:20px">Premium</h3><p class="muted" style="font-size:14px;margin-top:6px">La prestation complète : remise à neuf et grand ménage.</p>
+      <div class="price">35 €<small> / heure</small></div>
+      <ul class="feat"><li>Tout de la formule Confort</li><li>Grand ménage de printemps</li><li>Nettoyage fin de chantier</li><li>Vitres intérieures & extérieures</li><li>Intervention express prioritaire</li></ul>
+      <a href="#contact" class="btn btn-ghost">Choisir Premium →</a>
+    </div>
+  </div>
+  <p class="dim center" style="font-size:12px;margin-top:30px">* Tarifs horaires indicatifs TTC. Le prix final dépend de la surface, de la fréquence et de l'état des lieux.</p>
+</div></section>
+
+<!-- AVANT/APRÈS -->
+<section id="avant-apres" class="section"><div class="wrap">
+  <div class="center maxw mx-auto" style="margin-bottom:48px">
+    <span class="eyebrow">Avant / Après</span>
+    <h2 style="font-size:34px;margin:18px 0 12px">La différence MyClean, en un coup d'œil</h2>
+    <p class="muted">Glissez le curseur pour découvrir la transformation.</p>
+  </div>
+  <div class="ba" id="ba">
+    <div class="layer after">Après ✨</div>
+    <div class="layer before" id="before">Avant</div>
+    <span class="lab lab-a">Après</span>
+    <span class="lab lab-b">Avant</span>
+    <div class="handle" id="handle"><div class="knob">⇆</div></div>
+    <input type="range" min="0" max="100" value="50" id="range" aria-label="Comparateur avant après">
+  </div>
+</div></section>
+
+<!-- AVIS -->
+<section id="avis" class="section"><div class="wrap">
+  <div class="center maxw mx-auto"><span class="eyebrow">Avis clients</span>
+    <h2 style="font-size:34px;margin:18px 0 12px">Ils nous ont fait confiance</h2>
+    <p class="muted">Plus de 500 interventions et une note moyenne de 4,9/5.</p></div>
+  <div class="grid4" style="margin-top:48px">
+    <figure class="card"><div class="dim" style="font-size:26px">❝</div><blockquote>« Une équipe ponctuelle et minutieuse. Mon appartement n'a jamais été aussi propre ! »</blockquote><div class="stars">★★★★★</div><figcaption style="margin-top:10px;border-top:1px solid var(--border);padding-top:10px"><b style="color:#fff">Camille D.</b><div class="dim" style="font-size:12px">Particulier · Rennes Centre</div></figcaption></figure>
+    <figure class="card"><div class="dim" style="font-size:26px">❝</div><blockquote>« Service impeccable pour nos locaux. Flexibles, pro et toujours souriants. »</blockquote><div class="stars">★★★★★</div><figcaption style="margin-top:10px;border-top:1px solid var(--border);padding-top:10px"><b style="color:#fff">Thomas L.</b><div class="dim" style="font-size:12px">Gérant · Cesson-Sévigné</div></figcaption></figure>
+    <figure class="card"><div class="dim" style="font-size:26px">❝</div><blockquote>« Nettoyage de fin de bail nickel. État des lieux validé sans réserve. Merci ! »</blockquote><div class="stars">★★★★★</div><figcaption style="margin-top:10px;border-top:1px solid var(--border);padding-top:10px"><b style="color:#fff">Sophie M.</b><div class="dim" style="font-size:12px">Locataire · Saint-Grégoire</div></figcaption></figure>
+    <figure class="card"><div class="dim" style="font-size:26px">❝</div><blockquote>« Devis clair et rapide, intervention soignée. Excellent rapport qualité-prix. »</blockquote><div class="stars">★★★★★</div><figcaption style="margin-top:10px;border-top:1px solid var(--border);padding-top:10px"><b style="color:#fff">Karim B.</b><div class="dim" style="font-size:12px">Propriétaire · Bruz</div></figcaption></figure>
+  </div>
+</div></section>
+
+<!-- FAQ -->
+<section id="faq" class="section"><div class="wrap">
+  <div class="center maxw mx-auto" style="margin-bottom:40px"><span class="eyebrow">FAQ</span>
+    <h2 style="font-size:34px;margin:18px 0 12px">Questions fréquentes</h2>
+    <p class="muted">Vous ne trouvez pas votre réponse ? Contactez-nous.</p></div>
+  <div style="max-width:760px;margin:0 auto" id="faq">
+    <div class="faq-item open"><div class="faq-q">Quelles zones desservez-vous ?<span class="faq-plus">+</span></div><div class="faq-a"><div>Rennes et toute la métropole rennaise (Cesson-Sévigné, Saint-Grégoire, Bruz, Pacé, Chantepie…).</div></div></div>
+    <div class="faq-item"><div class="faq-q">Fournissez-vous le matériel et les produits ?<span class="faq-plus">+</span></div><div class="faq-a"><div>Oui, tout est inclus : matériel professionnel et produits éco-responsables.</div></div></div>
+    <div class="faq-item"><div class="faq-q">Comment obtenir un devis ?<span class="faq-plus">+</span></div><div class="faq-a"><div>Via le formulaire en 5 étapes ou par téléphone / WhatsApp. Estimation sous 24h.</div></div></div>
+    <div class="faq-item"><div class="faq-q">Proposez-vous des prestations régulières ?<span class="faq-plus">+</span></div><div class="faq-a"><div>Oui : contrats hebdomadaires, bimensuels ou mensuels à tarifs dégressifs.</div></div></div>
+    <div class="faq-item"><div class="faq-q">Vos agents sont-ils assurés ?<span class="faq-plus">+</span></div><div class="faq-a"><div>Tous nos intervenants sont déclarés, formés et couverts par une assurance RC pro.</div></div></div>
+  </div>
+</div></section>
+
+<!-- CONTACT / DEVIS -->
+<section id="contact" class="section"><div class="wrap">
+  <div class="center maxw mx-auto"><span class="eyebrow">Devis & Contact</span>
+    <h2 style="font-size:34px;margin:18px 0 12px">Obtenez votre devis gratuit en 5 étapes</h2>
+    <p class="muted">Renseignez quelques informations et recevez une estimation immédiate.</p></div>
+
+  <div class="form-grid" style="margin-top:48px">
+    <div>
+      <div class="steps">
+        <div class="step done"><span class="dot">✓</span><span class="lbl">Bien</span></div><span class="bar done"></span>
+        <div class="step active"><span class="dot">2</span><span class="lbl">Formule</span></div><span class="bar"></span>
+        <div class="step"><span class="dot">3</span><span class="lbl">Fréquence</span></div><span class="bar"></span>
+        <div class="step"><span class="dot">4</span><span class="lbl">Coordonnées</span></div><span class="bar"></span>
+        <div class="step"><span class="dot">5</span><span class="lbl">Récap</span></div>
+      </div>
+      <div class="card">
+        <h3 style="font-size:20px">Choisissez votre formule</h3>
+        <div style="display:grid;gap:12px;margin-top:18px">
+          <div class="opt" style="display:flex;justify-content:space-between;text-align:left"><span><b style="color:#fff">Essentiel</b><br><span class="dim" style="font-size:12px">Entretien régulier</span></span><span style="color:#fff;font-weight:800">25 €<small style="font-weight:400;color:var(--muted)">/h</small></span></div>
+          <div class="opt sel" style="display:flex;justify-content:space-between;text-align:left"><span><b style="color:#fff">Confort</b><br><span class="dim" style="font-size:12px">Nettoyage approfondi</span></span><span style="color:#fff;font-weight:800">30 €<small style="font-weight:400;color:var(--muted)">/h</small></span></div>
+          <div class="opt" style="display:flex;justify-content:space-between;text-align:left"><span><b style="color:#fff">Premium</b><br><span class="dim" style="font-size:12px">Prestation complète</span></span><span style="color:#fff;font-weight:800">35 €<small style="font-weight:400;color:var(--muted)">/h</small></span></div>
+        </div>
+        <div class="estimate">
+          <div class="dim" style="font-size:11px;letter-spacing:.2em;text-transform:uppercase">Estimation indicative</div>
+          <div class="big grad">90 €</div>
+          <div class="dim" style="font-size:12px">par intervention · 60 m² · Confort</div>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-top:24px">
+          <button class="btn btn-ghost">← Retour</button>
+          <button class="btn btn-primary">Continuer →</button>
+        </div>
+      </div>
+    </div>
+
+    <aside class="card">
+      <h3 style="font-size:18px">Nous contacter directement</h3>
+      <p class="muted" style="font-size:14px;margin-top:6px">Une question ou une urgence ? On vous répond vite.</p>
+      <ul style="list-style:none;display:grid;gap:16px;margin-top:22px">
+        <li style="display:flex;gap:12px"><span class="pill">📞</span><span><span class="dim" style="font-size:12px">Téléphone</span><br><b style="color:#fff;font-size:14px">07 72 39 63 72</b></span></li>
+        <li style="display:flex;gap:12px"><span class="pill">✉️</span><span><span class="dim" style="font-size:12px">Email</span><br><b style="color:#fff;font-size:14px">myclean.350@gmail.com</b></span></li>
+        <li style="display:flex;gap:12px"><span class="pill">📍</span><span><span class="dim" style="font-size:12px">Zone</span><br><b style="color:#fff;font-size:14px">Rennes et sa métropole (35)</b></span></li>
+        <li style="display:flex;gap:12px"><span class="pill">🕒</span><span><span class="dim" style="font-size:12px">Horaires</span><br><b style="color:#fff;font-size:14px">Lun – Sam : 8h – 20h</b></span></li>
+      </ul>
+      <a href="https://wa.me/33772396372" class="btn btn-accent" style="width:100%;margin-top:22px">💬 Discuter sur WhatsApp</a>
+    </aside>
+  </div>
+  <p class="note">Aperçu statique — la version Next.js calcule le prix en direct à chaque étape et envoie la demande par email (EmailJS).</p>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="fgrid">
+    <div>
+      <a href="#" class="logo"><span class="mark">✦</span> My<span class="grad">Clean</span></a>
+      <p class="muted" style="font-size:14px;margin-top:14px;max-width:340px">MyClean Rennes — votre partenaire propreté à Rennes. Nettoyage premium pour particuliers et professionnels.</p>
+    </div>
+    <div><h4>Navigation</h4><ul><li><a href="#a-propos">À propos</a></li><li><a href="#formules">Formules</a></li><li><a href="#avis">Avis</a></li><li><a href="#faq">FAQ</a></li><li><a href="#contact">Contact</a></li></ul></div>
+    <div><h4>Contact</h4><ul><li><a href="tel:+33772396372">📞 07 72 39 63 72</a></li><li><a href="mailto:myclean.350@gmail.com">✉️ myclean.350@gmail.com</a></li><li class="muted">📍 Rennes et sa métropole (35)</li></ul></div>
+  </div>
+  <div class="fbot"><span>© 2026 MyClean Rennes. Tous droits réservés.</span><span>Conçu avec soin · Rennes (35)</span></div>
+</div></footer>
+
+<a href="https://wa.me/33772396372" class="wa">💬 WhatsApp</a>
+
+<script>
+  // Slider avant/après
+  var range=document.getElementById('range'), before=document.getElementById('before'), handle=document.getElementById('handle');
+  function upd(v){ before.style.clipPath='inset(0 '+(100-v)+'% 0 0)'; handle.style.left=v+'%'; }
+  range.addEventListener('input',function(){upd(this.value)}); upd(50);
+  // FAQ accordéon
+  document.querySelectorAll('.faq-item .faq-q').forEach(function(q){
+    q.addEventListener('click',function(){
+      var item=q.parentElement, wasOpen=item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(function(i){i.classList.remove('open')});
+      if(!wasOpen) item.classList.add('open');
+    });
+  });
+</script>
+</body>
+</html>
