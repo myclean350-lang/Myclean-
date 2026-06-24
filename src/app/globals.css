@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0a0e1a;
+  --foreground: #e6eaf2;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    @apply bg-ink text-[#cfd6e4] antialiased;
+    background-image: radial-gradient(
+        70% 50% at 50% -10%,
+        rgba(45, 212, 191, 0.1) 0%,
+        rgba(10, 14, 26, 0) 60%
+      ),
+      radial-gradient(
+        50% 40% at 90% 10%,
+        rgba(212, 175, 55, 0.07) 0%,
+        rgba(10, 14, 26, 0) 60%
+      );
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    @apply bg-accent/30 text-white;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display text-white;
+    text-wrap: balance;
+  }
+}
+
+@layer components {
+  .container-px {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+
+  .section {
+    @apply scroll-mt-24 py-20 sm:py-28;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border border-surface-border bg-surface/60 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-accent;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/60;
+  }
+
+  .btn-primary {
+    @apply btn bg-gold-gradient text-ink-950 shadow-gold hover:shadow-[0_0_50px_-8px_rgba(212,175,55,0.6)] hover:brightness-105;
+  }
+
+  .btn-accent {
+    @apply btn bg-accent text-ink-950 shadow-glow hover:bg-accent-light;
+  }
+
+  .btn-ghost {
+    @apply btn border border-surface-border bg-surface/40 text-white hover:border-accent/50 hover:bg-surface-light;
+  }
+
+  .card {
+    @apply rounded-2xl border border-surface-border bg-surface/70 p-6 shadow-card backdrop-blur-sm;
+  }
+
+  .gradient-text {
+    @apply bg-gold-gradient bg-clip-text text-transparent;
+  }
+}
