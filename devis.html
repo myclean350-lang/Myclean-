@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Devis gratuit — MyClean Rennes</title>
+<meta name="description" content="Estimez votre prestation de nettoyage automobile MyClean en 1 minute. Devis en ligne gratuit et sans engagement à Rennes." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav id="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="logo">My<span class="gold">Clean</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="formules.html">Formules</a></li>
+      <li><a href="index.html#avis">Avis</a></li>
+      <li><a href="contact.html#faq">FAQ</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="devis.html" class="btn btn-gold active" style="padding:11px 24px;">Devis gratuit</a></li>
+    </ul>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- ===== DEVIS ===== -->
+<section id="devis" class="page-top">
+  <div class="container">
+    <div style="text-align:center;" class="reveal">
+      <span class="section-tag">Devis en ligne</span>
+      <h2 class="section-title">Estimez votre prestation en 1 minute</h2>
+      <p class="section-subtitle" style="margin-left:auto;margin-right:auto;">Répondez à quelques questions et obtenez une estimation immédiate. Sans engagement.</p>
+    </div>
+    <div class="devis-wrap reveal">
+      <div class="steps-bar" id="stepsBar">
+        <div class="sdot active"></div><div class="sdot"></div><div class="sdot"></div><div class="sdot"></div><div class="sdot"></div>
+      </div>
+
+      <form id="devisForm" onsubmit="return false;">
+        <!-- Step 1 -->
+        <div class="step active" data-step="1">
+          <h3>1. Combien de véhicules ?</h3>
+          <p class="step-hint">Sélectionnez le nombre de véhicules à nettoyer.</p>
+          <div class="opt-grid" data-single="vehicles">
+            <div class="choice selected" data-val="1"><div class="ic">🚗</div><div class="t">1 véhicule</div></div>
+            <div class="choice" data-val="2"><div class="ic">🚗🚗</div><div class="t">2 véhicules</div></div>
+            <div class="choice" data-val="3"><div class="ic">🚗➕</div><div class="t">3 et +</div></div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step" data-step="2">
+          <h3>2. Quelle formule ?</h3>
+          <p class="step-hint">Choisissez la prestation souhaitée.</p>
+          <div class="opt-grid" data-single="formule">
+            <div class="choice selected" data-val="express" data-price="20"><div class="ic">💨</div><div class="t">Express</div><div class="d">dès 20€</div></div>
+            <div class="choice" data-val="sieges" data-price="40"><div class="ic">🪑</div><div class="t">Sièges</div><div class="d">dès 40€</div></div>
+            <div class="choice" data-val="premium" data-price="60"><div class="ic">👑</div><div class="t">Premium</div><div class="d">dès 60€</div></div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step" data-step="3">
+          <h3>3. Type de véhicule ?</h3>
+          <p class="step-hint">Le tarif Premium dépend du gabarit.</p>
+          <div class="opt-grid" data-single="type">
+            <div class="choice selected" data-val="citadine" data-premium="60"><div class="ic">🚙</div><div class="t">Citadine</div><div class="d">Premium 60€</div></div>
+            <div class="choice" data-val="suv" data-premium="70"><div class="ic">🚐</div><div class="t">SUV / Berline</div><div class="d">Premium 70€</div></div>
+            <div class="choice" data-val="van" data-premium="80"><div class="ic">🚌</div><div class="t">Van / Utilitaire</div><div class="d">Premium 80€</div></div>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="step" data-step="4">
+          <h3>4. Options supplémentaires</h3>
+          <p class="step-hint">Personnalisez votre prestation.</p>
+          <div class="check-grid" data-multi="options">
+            <div class="check-row" data-val="coffre" data-price="5"><div class="cl"><span class="cbox">✓</span><span>🧳 Nettoyage du coffre</span></div><span class="price-tag">+5€</span></div>
+            <div class="check-row" data-val="deplacement" data-price="5"><div class="cl"><span class="cbox">✓</span><span>🚗 Déplacement (hors intra-muros)</span></div><span class="price-tag">+5€</span></div>
+            <div class="check-row" data-val="poils" data-price="10"><div class="cl"><span class="cbox">✓</span><span>🐾 Poils d'animaux / Sable</span></div><span class="price-tag">+10€</span></div>
+          </div>
+          <div class="estimate">
+            <span class="lbl">Estimation de votre prestation :</span>
+            <span class="val" id="estimateVal">20€</span>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="step" data-step="5">
+          <h3>5. Vos coordonnées</h3>
+          <p class="step-hint">On vous recontacte rapidement pour confirmer.</p>
+          <div class="field"><label>Nom complet</label><input type="text" id="f_nom" placeholder="Jean Dupont" /></div>
+          <div class="field"><label>Téléphone</label><input type="tel" id="f_tel" placeholder="06 12 34 56 78" /></div>
+          <div class="field"><label>Adresse</label><input type="text" id="f_adr" placeholder="Rue, 35000 Rennes" /></div>
+          <div class="field"><label>Message (facultatif)</label><textarea id="f_msg" placeholder="Précisez vos besoins, disponibilités…"></textarea></div>
+          <div class="estimate"><span class="lbl">Total estimé :</span><span class="val" id="estimateVal2">20€</span></div>
+        </div>
+
+        <!-- Nav -->
+        <div class="step-nav">
+          <button type="button" class="btn btn-ghost" id="prevBtn" style="visibility:hidden;">← Retour</button>
+          <button type="button" class="btn btn-gold" id="nextBtn">Continuer →</button>
+        </div>
+      </form>
+
+      <!-- Success -->
+      <div class="devis-success" id="devisSuccess">
+        <div class="ok-ic">✓</div>
+        <h3>Demande envoyée !</h3>
+        <p>Merci <span id="successName"></span>, votre demande de devis a bien été reçue. L'équipe MyClean vous recontacte très vite au numéro indiqué.</p>
+        <a href="https://wa.me/33772396372" class="btn btn-gold" style="margin-top:24px;">Nous écrire sur WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">My<span class="gold">Clean</span></div>
+        <p>Nettoyage intérieur automobile à domicile à Rennes et ses alentours. Matériel professionnel, résultat garanti.</p>
+      </div>
+      <div>
+        <h5>Navigation</h5>
+        <a href="index.html">Accueil</a>
+        <a href="formules.html">Formules</a>
+        <a href="index.html#avis">Avis clients</a>
+        <a href="contact.html#faq">FAQ</a>
+        <a href="devis.html">Devis gratuit</a>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <a href="tel:+33954417407">09 54 41 74 07</a>
+        <a href="tel:+33772396372">07 72 39 63 72</a>
+        <a href="mailto:myclean35@gmail.com">myclean35@gmail.com</a>
+        <p>La Harpe, 35000 Rennes</p>
+        <p>Instagram & Facebook : @MYCLEAN35</p>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 MyClean — Tous droits réservés. Nettoyage automobile à domicile · Rennes.</div>
+  </div>
+</footer>
+
+<!-- ===== FLOATING ===== -->
+<a href="https://wa.me/33772396372" class="float-wa" target="_blank" rel="noopener" aria-label="WhatsApp">🟢</a>
+<a href="tel:+33772396372" class="float-tel" aria-label="Appeler">📞</a>
+
+<script src="app.js"></script>
+</body>
+</html>
