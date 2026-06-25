@@ -4,159 +4,248 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>MyClean — Nettoyage intérieur automobile à domicile à Rennes</title>
-<meta name="description" content="MyClean : service de nettoyage intérieur automobile à domicile à Rennes et 30 km autour. Aspiration, injecteur-extracteur, vapeur, désinfection. Devis gratuit." />
+<meta name="description" content="MyClean se déplace à domicile pour nettoyer l'intérieur de votre véhicule en profondeur. Rennes & 30 km. Devis gratuit." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --brand: #8E1F1F;
+    --brand-dark: #761919;
+    --ink: #171717;
+    --text: #5b6066;
+    --muted: #8a8f96;
+    --bg: #ffffff;
+    --line: #e6e7e9;
+    --pill: #f6f6f7;
+    --radius: 16px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+  }
+  a { text-decoration: none; color: inherit; }
+  ul { list-style: none; }
+  img { max-width: 100%; display: block; }
+  .container { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+
+  /* ===== NAVBAR ===== */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(255,255,255,.86);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0,0,0,.05);
+  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.18rem; letter-spacing: -.02em; }
+  .logo .pin {
+    width: 34px; height: 34px; border-radius: 11px; background: var(--ink);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .logo .pin svg { width: 18px; height: 18px; }
+  .logo b { font-weight: 800; }
+  .logo .c { color: var(--brand); }
+  .nav-desktop { display: none; gap: 30px; align-items: center; }
+  .nav-desktop a { font-size: .92rem; font-weight: 500; color: #3f4348; transition: color .2s; }
+  .nav-desktop a:hover { color: var(--brand); }
+  .nav-cta { background: var(--brand); color: #fff !important; padding: 10px 20px; border-radius: 11px; font-weight: 600; }
+  .burger {
+    width: 44px; height: 44px; border-radius: 12px; background: #f1f1f2; border: 1px solid var(--line);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; cursor: pointer;
+  }
+  .burger span { width: 18px; height: 2px; background: var(--ink); border-radius: 2px; transition: .3s; }
+  .burger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .burger.open span:nth-child(2) { opacity: 0; }
+  .burger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+  /* mobile menu */
+  .mobile-menu {
+    position: fixed; inset: 64px 0 0 0; z-index: 49;
+    background: #fff; padding: 24px 20px;
+    transform: translateX(100%); transition: transform .35s ease;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .mobile-menu.open { transform: translateX(0); }
+  .mobile-menu a { padding: 16px 6px; font-size: 1.1rem; font-weight: 600; border-bottom: 1px solid var(--line); }
+  .mobile-menu a.cta { margin-top: 18px; background: var(--brand); color: #fff; text-align: center; border-radius: 12px; border: none; }
+
+  /* ===== HERO ===== */
+  .hero { position: relative; overflow: hidden; padding: 26px 0 40px; }
+  .hero-media {
+    position: absolute; top: 0; right: 0; left: 0; height: 360px; z-index: 0;
+    background: url('assets/hero.jpg') center/cover no-repeat;
+  }
+  .hero-media::after {
+    content: ''; position: absolute; inset: 0;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,.45) 0%, rgba(255,255,255,.72) 42%, #fff 78%),
+      linear-gradient(90deg, rgba(255,255,255,.75) 0%, rgba(255,255,255,.15) 60%, rgba(255,255,255,0) 100%);
+  }
+  .play {
+    position: absolute; top: 130px; right: 34px; z-index: 1;
+    width: 62px; height: 62px; border-radius: 50%;
+    background: rgba(255,255,255,.82); backdrop-filter: blur(4px);
+    box-shadow: 0 10px 30px rgba(0,0,0,.18);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .play::before {
+    content: ''; border-style: solid; border-width: 9px 0 9px 15px;
+    border-color: transparent transparent transparent var(--brand); margin-left: 4px;
+  }
+  .hero-content { position: relative; z-index: 2; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: var(--pill); border: 1px solid var(--line);
+    padding: 7px 14px; border-radius: 999px;
+    font-size: .72rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #5a5f65;
+    margin-bottom: 22px;
+  }
+  .badge svg { width: 13px; height: 13px; }
+  h1 {
+    font-size: clamp(2.1rem, 9vw, 2.9rem);
+    font-weight: 800; line-height: 1.08; letter-spacing: -.02em; color: var(--ink);
+    margin-bottom: 18px; max-width: 16ch;
+  }
+  h1 .c { color: var(--brand); }
+  .sub { color: var(--text); font-size: 1.04rem; max-width: 30ch; margin-bottom: 30px; }
+  .sub mark { background: rgba(142,31,31,.12); color: var(--brand); padding: 0 3px; border-radius: 3px; }
+
+  .hero-actions { display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    height: 56px; border-radius: 13px; font-weight: 600; font-size: 1rem; font-family: inherit;
+    cursor: pointer; border: 1px solid transparent; transition: transform .15s ease, background .2s ease, box-shadow .2s ease;
+  }
+  .btn-primary { background: var(--brand); color: #fff; box-shadow: 0 8px 22px rgba(142,31,31,.25); }
+  .btn-primary:hover { background: var(--brand-dark); transform: translateY(-1px); }
+  .btn-outline { background: #fff; color: var(--ink); border-color: var(--line); box-shadow: 0 4px 14px rgba(0,0,0,.04); }
+  .btn-outline:hover { border-color: #cfd1d4; transform: translateY(-1px); }
+
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .stat .num { font-size: 1.7rem; font-weight: 800; color: var(--ink); letter-spacing: -.02em; line-height: 1; }
+  .stat .lbl { font-size: .82rem; color: var(--muted); margin-top: 6px; }
+
+  /* ===== STICKY BOTTOM BAR (mobile) ===== */
+  .actionbar {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 60;
+    background: #fff; border-top: 1px solid var(--line);
+    box-shadow: 0 -6px 24px rgba(0,0,0,.06);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+  }
+  .actionbar .btn { height: 50px; border-radius: 12px; }
+  body { padding-bottom: 86px; }
+
+  /* ===== DESKTOP ===== */
+  @media (min-width: 768px) {
+    body { padding-bottom: 0; }
+    .burger, .mobile-menu { display: none; }
+    .nav-desktop { display: flex; }
+    .actionbar { display: none; }
+
+    .hero { padding: 70px 0 90px; }
+    .hero .container { display: grid; grid-template-columns: 1.05fr .95fr; gap: 56px; align-items: center; }
+    .hero-media {
+      position: relative; top: auto; right: auto; left: auto;
+      height: 440px; border-radius: 22px; box-shadow: 0 30px 60px rgba(0,0,0,.16);
+    }
+    .hero-media::after {
+      background: linear-gradient(120deg, rgba(0,0,0,.05), rgba(0,0,0,0));
+    }
+    .play { top: 50%; right: 50%; transform: translate(50%, -50%); width: 76px; height: 76px; }
+    h1 { font-size: clamp(2.6rem, 4vw, 3.6rem); }
+    .sub { font-size: 1.12rem; max-width: 36ch; }
+    .hero-actions { flex-direction: row; }
+    .hero-actions .btn { padding: 0 28px; }
+    .stats { max-width: 460px; }
+    .stat .num { font-size: 2rem; }
+  }
+</style>
 </head>
 <body>
 
 <!-- ===== NAVBAR ===== -->
-<nav id="navbar">
+<nav>
   <div class="container nav-inner">
-    <a href="index.html" class="logo">My<span class="gold">Clean</span></a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="index.html" class="active">Accueil</a></li>
-      <li><a href="formules.html">Formules</a></li>
-      <li><a href="index.html#avis">Avis</a></li>
-      <li><a href="contact.html#faq">FAQ</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="devis.html" class="btn btn-gold" style="padding:11px 24px;">Devis gratuit</a></li>
-    </ul>
+    <a href="index.html" class="logo">
+      <span class="pin">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#fff"/><circle cx="12" cy="9" r="2.4" fill="#171717"/></svg>
+      </span>
+      <span><b>My</b><b class="c">Clean</b></span>
+    </a>
+    <div class="nav-desktop">
+      <a href="formules.html">Prestations</a>
+      <a href="index.html#avis">Avis</a>
+      <a href="contact.html#faq">FAQ</a>
+      <a href="contact.html">Contact</a>
+      <a href="devis.html" class="nav-cta">Devis</a>
+    </div>
     <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
+<!-- ===== MOBILE MENU ===== -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="formules.html">Prestations</a>
+  <a href="index.html#avis">Avis</a>
+  <a href="contact.html#faq">FAQ</a>
+  <a href="contact.html">Contact</a>
+  <a href="devis.html" class="cta">Demander un devis</a>
+</div>
+
 <!-- ===== HERO ===== -->
-<header class="hero hero--video" id="hero">
-  <img class="hero-img" src="assets/hero.jpg" alt="Intérieur cuir rouge d'une voiture nettoyée par MyClean" />
-  <div class="container hero-content">
-    <span class="badge-pill reveal">✦ Service à domicile · Rennes & 30 km</span>
-    <h1 class="reveal">Votre voiture <span class="gold">comme neuve</span>, sans bouger de chez vous.</h1>
-    <p class="sub reveal">Nettoyage intérieur professionnel à domicile, à Rennes et 30 km autour.</p>
-    <div class="hero-cta reveal">
-      <a href="devis.html" class="btn btn-gold">Obtenir mon devis →</a>
-      <a href="tel:+33772396372" class="btn btn-ghost">📞 07 72 39 63 72</a>
+<header class="hero">
+  <div class="container hero-grid">
+   <div class="hero-content">
+    <span class="badge">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" stroke="#5a5f65" stroke-width="2"/><circle cx="12" cy="9" r="2.3" fill="#5a5f65"/></svg>
+      Rennes &amp; 30 km
+    </span>
+    <h1>Redonnez une seconde vie à votre <span class="c">intérieur.</span></h1>
+    <p class="sub">MyClean se déplace à domicile ou sur lieu de travail pour nettoyer votre véhicule en profondeur, avec des résultats <mark>visibles immédiatement</mark>.</p>
+    <div class="hero-actions">
+      <a href="devis.html" class="btn btn-primary">Demander un devis
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="formules.html" class="btn btn-outline">Voir les prestations</a>
     </div>
-    <div class="hero-badges reveal">
-      <div class="hero-badge"><div class="num">+200</div><div class="lbl">véhicules nettoyés</div></div>
-      <div class="hero-badge"><div class="num">4.9/5</div><div class="lbl">note Google ★</div></div>
-      <div class="hero-badge"><div class="num">98%</div><div class="lbl">nous recommandent</div></div>
+    <div class="stats">
+      <div class="stat"><div class="num">+200</div><div class="lbl">Véhicules nettoyés</div></div>
+      <div class="stat"><div class="num">4,5/5</div><div class="lbl">Satisfaction client</div></div>
+      <div class="stat"><div class="num">98%</div><div class="lbl">Recommandent</div></div>
     </div>
+   </div>
+   <div class="hero-media"><div class="play" aria-hidden="true"></div></div>
   </div>
 </header>
 
-<!-- ===== À PROPOS ===== -->
-<section id="about">
-  <div class="container">
-    <div class="about-grid">
-      <div class="about-photo ph reveal">
-        PHOTO FONDATEUR
-        <small>Portrait professionnel — format portrait</small>
-      </div>
-      <div class="reveal">
-        <span class="section-tag">À propos de MyClean</span>
-        <h2 class="section-title">Une passion pour le détail, au service de votre véhicule</h2>
-        <p style="color:var(--gray);font-weight:300;">Basé à Rennes, MyClean est né d'une exigence simple : offrir un nettoyage automobile haut de gamme, directement chez vous. Matériel professionnel, produits de qualité et souci du détail à chaque intervention.</p>
-        <ul class="about-list">
-          <li><span class="check">✓</span><div><strong>Intervention à domicile</strong> <span>— nous venons à vous, à Rennes et jusqu'à 30 km.</span></div></li>
-          <li><span class="check">✓</span><div><strong>Matériel professionnel</strong> <span>— injecteur-extracteur, nettoyeur vapeur, produits premium.</span></div></li>
-          <li><span class="check">✓</span><div><strong>Résultat immédiat & garanti</strong> <span>— un intérieur sain, désinfecté et impeccable.</span></div></li>
-          <li><span class="check">✓</span><div><strong>Tarifs transparents</strong> <span>— des formules claires, sans surprise.</span></div></li>
-        </ul>
-        <a href="devis.html" class="btn btn-gold" style="margin-top:28px;">Demander un devis</a>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- ===== STICKY ACTION BAR (mobile) ===== -->
+<div class="actionbar">
+  <a href="tel:+33772396372" class="btn btn-outline">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.2 2.2z" fill="#171717"/></svg>
+    Appeler
+  </a>
+  <a href="devis.html" class="btn btn-primary">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8l-5-5z" stroke="#fff" stroke-width="2" stroke-linejoin="round"/><path d="M14 3v5h5" stroke="#fff" stroke-width="2" stroke-linejoin="round"/></svg>
+    Devis
+  </a>
+</div>
 
-<!-- ===== POURQUOI NOUS ===== -->
-<section id="pourquoi" style="background:var(--black-2);">
-  <div class="container">
-    <div style="text-align:center;" class="reveal">
-      <span class="section-tag">Pourquoi nous choisir</span>
-      <h2 class="section-title">L'excellence à votre porte</h2>
-    </div>
-    <div class="why-grid">
-      <div class="why-card reveal"><div class="why-icon">🚗</div><h4>On se déplace</h4><p>Nous venons directement chez vous, à votre domicile ou sur votre lieu de travail. Zéro contrainte.</p></div>
-      <div class="why-card reveal"><div class="why-icon">🛠️</div><h4>Matériel pro</h4><p>Injecteur-extracteur, nettoyeur vapeur et produits professionnels pour un résultat optimal.</p></div>
-      <div class="why-card reveal"><div class="why-icon">✨</div><h4>Résultat immédiat</h4><p>Un intérieur propre, sain et désinfecté que vous récupérez le jour même.</p></div>
-      <div class="why-card reveal"><div class="why-icon">⚡</div><h4>Réactivité</h4><p>Prise de rendez-vous rapide, 7j/7. On s'adapte à votre emploi du temps.</p></div>
-    </div>
-    <div style="text-align:center;margin-top:44px;" class="reveal">
-      <a href="formules.html" class="btn btn-gold">Découvrir nos formules →</a>
-    </div>
-  </div>
-</section>
-
-<!-- ===== AVIS ===== -->
-<section id="avis">
-  <div class="container">
-    <div class="reviews-head reveal">
-      <div>
-        <span class="section-tag">Ils nous font confiance</span>
-        <h2 class="section-title" style="margin-bottom:0;">Avis clients</h2>
-      </div>
-      <div class="reviews-score">
-        <div class="big">4.9</div>
-        <div>
-          <div class="stars">★★★★★</div>
-          <div style="color:var(--gray);font-size:.85rem;font-weight:300;">Basé sur les avis Google</div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="reviews-track-wrap reveal">
-    <div class="reviews-track" id="reviewsTrack"></div>
-  </div>
-</section>
-
-<!-- ===== CTA FINAL ===== -->
-<section class="cta-final">
-  <div class="container reveal">
-    <h2>Prêt à retrouver une voiture <span style="color:#fff;text-decoration:underline;text-decoration-color:rgba(255,255,255,.5);">impeccable</span> ?</h2>
-    <p>Réservez votre créneau dès aujourd'hui. MyClean se déplace à Rennes et ses alentours, 7j/7.</p>
-    <div class="hero-cta">
-      <a href="tel:+33772396372" class="btn btn-ghost">📞 Appeler maintenant</a>
-      <a href="devis.html" class="btn btn-gold">Obtenir mon devis →</a>
-    </div>
-  </div>
-</section>
-
-<!-- ===== FOOTER ===== -->
-<footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div>
-        <div class="footer-logo">My<span class="gold">Clean</span></div>
-        <p>Nettoyage intérieur automobile à domicile à Rennes et ses alentours. Matériel professionnel, résultat garanti.</p>
-      </div>
-      <div>
-        <h5>Navigation</h5>
-        <a href="index.html">Accueil</a>
-        <a href="formules.html">Formules</a>
-        <a href="index.html#avis">Avis clients</a>
-        <a href="contact.html#faq">FAQ</a>
-        <a href="devis.html">Devis gratuit</a>
-      </div>
-      <div>
-        <h5>Contact</h5>
-        <a href="tel:+33954417407">09 54 41 74 07</a>
-        <a href="tel:+33772396372">07 72 39 63 72</a>
-        <a href="mailto:myclean35@gmail.com">myclean35@gmail.com</a>
-        <p>La Harpe, 35000 Rennes</p>
-        <p>Instagram & Facebook : @MYCLEAN35</p>
-      </div>
-    </div>
-    <div class="footer-bottom">© 2026 MyClean — Tous droits réservés. Nettoyage automobile à domicile · Rennes.</div>
-  </div>
-</footer>
-
-<!-- ===== FLOATING ===== -->
-<a href="https://wa.me/33772396372" class="float-wa" target="_blank" rel="noopener" aria-label="WhatsApp">🟢</a>
-<a href="tel:+33772396372" class="float-tel" aria-label="Appeler">📞</a>
-
-<script src="app.js"></script>
+<script>
+  const burger = document.getElementById('burger');
+  const menu = document.getElementById('mobileMenu');
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('open');
+    menu.classList.toggle('open');
+  });
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    burger.classList.remove('open'); menu.classList.remove('open');
+  }));
+</script>
 </body>
 </html>
