@@ -300,6 +300,7 @@ body { padding-bottom: 86px; }
   .ba-grid { grid-template-columns: 1fr; max-width: 440px; margin-left: auto; margin-right: auto; }
   .about { grid-template-columns: 1fr; grid-template-areas: "text" "photo" "cta"; row-gap: 24px; }
   .about-photo { align-self: stretch; aspect-ratio: 16/11; }
+  .about-cta { justify-self: center; }
   .contact-grid { grid-template-columns: 1fr; max-width: 440px; margin-left: auto; margin-right: auto; }
   .footer-grid { grid-template-columns: 1fr; text-align: center; }
   .socials { justify-content: center; }
