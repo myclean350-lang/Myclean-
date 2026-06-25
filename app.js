@@ -1,21 +1,13 @@
-/* ===== NAVBAR scroll ===== */
-const navbar = document.getElementById('navbar');
-if (navbar) {
-  window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 40);
-  });
-}
-
-/* ===== Burger menu ===== */
+/* ===== Burger / mobile menu ===== */
 const burger = document.getElementById('burger');
-const navLinks = document.getElementById('navLinks');
-if (burger && navLinks) {
+const mobileMenu = document.getElementById('mobileMenu');
+if (burger && mobileMenu) {
   burger.addEventListener('click', () => {
     burger.classList.toggle('open');
-    navLinks.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
   });
-  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    burger.classList.remove('open'); navLinks.classList.remove('open');
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    burger.classList.remove('open'); mobileMenu.classList.remove('open');
   }));
 }
 
@@ -40,12 +32,12 @@ document.querySelectorAll('[data-ba]').forEach(slider => {
   slider.addEventListener('mousedown', e => { active = true; move(e.clientX); });
   window.addEventListener('mousemove', e => { if (active) move(e.clientX); });
   window.addEventListener('mouseup', () => active = false);
-  slider.addEventListener('touchstart', e => { active = true; move(e.touches[0].clientX); }, {passive:true});
-  slider.addEventListener('touchmove', e => { if (active) move(e.touches[0].clientX); }, {passive:true});
+  slider.addEventListener('touchstart', e => { active = true; move(e.touches[0].clientX); }, { passive: true });
+  slider.addEventListener('touchmove', e => { if (active) move(e.touches[0].clientX); }, { passive: true });
   slider.addEventListener('touchend', () => active = false);
 });
 
-/* ===== Reviews ===== */
+/* ===== Reviews carousel ===== */
 const reviews = [
   { n: 'Camille L.', t: 'Voiture méconnaissable ! Les sièges étaient pleins de taches, tout est parti. Travail soigné et ponctuel.' },
   { n: 'Mehdi B.', t: 'Service au top, déplacement à domicile super pratique. Intérieur impeccable et parfumé. Je recommande à 100%.' },
@@ -58,19 +50,19 @@ const reviews = [
 ];
 const track = document.getElementById('reviewsTrack');
 if (track) {
-  const cardHTML = r => `
-    <div class="review-card">
+  const card = r => `
+    <div class="review">
       <div class="stars">★★★★★</div>
       <p>"${r.t}"</p>
-      <div class="review-author">
-        <div class="review-avatar">${r.n.charAt(0)}</div>
-        <div><div class="name">${r.n}</div><div class="gmap">Avis Google ✓</div></div>
+      <div class="who">
+        <div class="av">${r.n.charAt(0)}</div>
+        <div><div class="nm">${r.n}</div><div class="gg">Avis Google ✓</div></div>
       </div>
     </div>`;
-  track.innerHTML = [...reviews, ...reviews].map(cardHTML).join('');
+  track.innerHTML = [...reviews, ...reviews].map(card).join('');
 }
 
-/* ===== Multi-step devis form ===== */
+/* ===== Devis multi-step form ===== */
 const devisForm = document.getElementById('devisForm');
 if (devisForm) {
   const state = { vehicles: 1, formule: 'express', formulePrice: 20, type: 'citadine', premium: 60, options: {} };
@@ -81,22 +73,19 @@ if (devisForm) {
   const prevBtn = document.getElementById('prevBtn');
   const nextBtn = document.getElementById('nextBtn');
 
-  function computeEstimate() {
-    let base = state.formulePrice;
-    if (state.formule === 'premium') base = state.premium;
-    let opts = 0;
-    Object.values(state.options).forEach(v => opts += v);
+  const compute = () => {
+    let base = state.formule === 'premium' ? state.premium : state.formulePrice;
+    let opts = 0; Object.values(state.options).forEach(v => opts += v);
     return (base + opts) * state.vehicles;
-  }
-  function refreshEstimate() {
-    const v = computeEstimate() + '€';
+  };
+  const refresh = () => {
+    const v = compute() + '€';
     const e1 = document.getElementById('estimateVal');
     const e2 = document.getElementById('estimateVal2');
     if (e1) e1.textContent = v;
     if (e2) e2.textContent = v;
-  }
+  };
 
-  /* single-select groups */
   document.querySelectorAll('[data-single]').forEach(group => {
     const key = group.dataset.single;
     group.querySelectorAll('.choice').forEach(choice => {
@@ -106,51 +95,42 @@ if (devisForm) {
         if (key === 'vehicles') state.vehicles = parseInt(choice.dataset.val);
         if (key === 'formule') { state.formule = choice.dataset.val; state.formulePrice = parseInt(choice.dataset.price); }
         if (key === 'type') { state.type = choice.dataset.val; state.premium = parseInt(choice.dataset.premium); }
-        refreshEstimate();
+        refresh();
       });
     });
   });
 
-  /* multi-select options */
   document.querySelectorAll('[data-multi="options"] .check-row').forEach(row => {
     row.addEventListener('click', () => {
       row.classList.toggle('selected');
-      const val = row.dataset.val; const price = parseInt(row.dataset.price);
-      if (row.classList.contains('selected')) state.options[val] = price;
-      else delete state.options[val];
-      refreshEstimate();
+      const val = row.dataset.val, price = parseInt(row.dataset.price);
+      if (row.classList.contains('selected')) state.options[val] = price; else delete state.options[val];
+      refresh();
     });
   });
 
-  function showStep(n) {
+  const showStep = n => {
     steps.forEach(s => s.classList.toggle('active', parseInt(s.dataset.step) === n));
     dots.forEach((d, i) => d.classList.toggle('active', i < n));
     prevBtn.style.visibility = n === 1 ? 'hidden' : 'visible';
     nextBtn.textContent = n === totalSteps ? 'Envoyer ✓' : 'Continuer →';
-    if (n === totalSteps) refreshEstimate();
-  }
+    if (n === totalSteps) refresh();
+  };
 
   nextBtn.addEventListener('click', () => {
-    if (currentStep < totalSteps) {
-      currentStep++; showStep(currentStep);
-    } else {
+    if (currentStep < totalSteps) { currentStep++; showStep(currentStep); }
+    else {
       const nom = document.getElementById('f_nom').value.trim();
       const tel = document.getElementById('f_tel').value.trim();
-      if (!nom || !tel) {
-        alert('Merci de renseigner au moins votre nom et votre téléphone.');
-        return;
-      }
+      if (!nom || !tel) { alert('Merci de renseigner au moins votre nom et votre téléphone.'); return; }
       devisForm.style.display = 'none';
       document.getElementById('stepsBar').style.display = 'none';
       document.getElementById('successName').textContent = nom;
-      document.getElementById('devisSuccess').classList.add('show');
+      document.getElementById('devisOk').classList.add('show');
     }
   });
-  prevBtn.addEventListener('click', () => {
-    if (currentStep > 1) { currentStep--; showStep(currentStep); }
-  });
-
-  refreshEstimate();
+  prevBtn.addEventListener('click', () => { if (currentStep > 1) { currentStep--; showStep(currentStep); } });
+  refresh();
 }
 
 /* ===== FAQ accordion ===== */

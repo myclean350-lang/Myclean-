@@ -3,156 +3,140 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Formules & Tarifs — MyClean Rennes</title>
-<meta name="description" content="Découvrez les formules de nettoyage automobile MyClean à Rennes : Express dès 20€, Sièges dès 40€, Premium dès 60€. Options et résultats avant/après." />
+<title>Prestations & Tarifs — MyClean Rennes</title>
+<meta name="description" content="Formules de nettoyage automobile MyClean à Rennes : Express dès 20€, Sièges dès 40€, Premium dès 60€. Options et résultats avant/après." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-<!-- ===== NAVBAR ===== -->
-<nav id="navbar">
+<!-- NAVBAR -->
+<nav>
   <div class="container nav-inner">
-    <a href="index.html" class="logo">My<span class="gold">Clean</span></a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="index.html">Accueil</a></li>
-      <li><a href="formules.html" class="active">Formules</a></li>
-      <li><a href="index.html#avis">Avis</a></li>
-      <li><a href="contact.html#faq">FAQ</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="devis.html" class="btn btn-gold" style="padding:11px 24px;">Devis gratuit</a></li>
-    </ul>
+    <a href="index.html" class="logo">
+      <span class="pin"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#fff"/><circle cx="12" cy="9" r="2.4" fill="#171717"/></svg></span>
+      <span><b>My</b><b class="c">Clean</b></span>
+    </a>
+    <div class="nav-desktop">
+      <a href="formules.html" class="active">Prestations</a>
+      <a href="index.html#avis">Avis</a>
+      <a href="contact.html#faq">FAQ</a>
+      <a href="contact.html">Contact</a>
+      <a href="devis.html" class="nav-cta">Devis</a>
+    </div>
     <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="formules.html" class="active">Prestations</a>
+  <a href="index.html#avis">Avis</a>
+  <a href="contact.html#faq">FAQ</a>
+  <a href="contact.html">Contact</a>
+  <a href="devis.html" class="cta">Demander un devis</a>
+</div>
 
-<!-- ===== FORMULES ===== -->
-<section id="formules" class="page-top">
+<!-- FORMULES -->
+<section class="page-head">
+  <div class="container center reveal">
+    <span class="eyebrow">Nos prestations</span>
+    <h1 class="s-title">Des formules adaptées à chaque besoin</h1>
+    <p class="s-sub">Tous nos services sont réalisés à domicile avec du matériel professionnel.</p>
+  </div>
   <div class="container">
-    <div style="text-align:center;" class="reveal">
-      <span class="section-tag">Nos formules</span>
-      <h2 class="section-title">Des prestations adaptées à chaque besoin</h2>
-      <p class="section-subtitle" style="margin-left:auto;margin-right:auto;">Choisissez la formule qui vous correspond. Tous nos services sont réalisés à domicile avec du matériel professionnel.</p>
-    </div>
-    <div class="formules-grid">
-      <!-- Express -->
-      <div class="formule reveal">
+    <div class="plans">
+      <div class="plan reveal">
         <h3>Express</h3>
         <div class="price">20€ <small>à partir de</small></div>
-        <ul class="feat">
-          <li>Aspiration complète</li>
-          <li>Nettoyage des plastiques</li>
-          <li>Dépoussiérage intérieur</li>
-          <li>Finition soignée</li>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#8E1F1F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Aspiration complète</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#8E1F1F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Nettoyage des plastiques</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#8E1F1F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Dépoussiérage intérieur</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#8E1F1F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Finition soignée</li>
         </ul>
-        <a href="devis.html" class="btn btn-ghost">Choisir Express</a>
+        <a href="devis.html" class="btn btn-outline">Choisir Express</a>
       </div>
-      <!-- Sièges (featured) -->
-      <div class="formule featured reveal">
-        <span class="pop-badge">★ Populaire</span>
+      <div class="plan featured reveal">
+        <span class="tag">★ Populaire</span>
         <h3>Sièges</h3>
         <div class="price">40€ <small>à partir de</small></div>
-        <ul class="feat">
-          <li>Injecteur-extracteur</li>
-          <li>Shampoing des sièges</li>
-          <li>Nettoyage vapeur</li>
-          <li>Désinfection complète</li>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#8E1F1F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Injecteur-extracteur</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#8E1F1F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Shampoing des sièges</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#8E1F1F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Nettoyage vapeur</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#8E1F1F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Désinfection complète</li>
         </ul>
-        <a href="devis.html" class="btn btn-gold">Choisir Sièges</a>
+        <a href="devis.html" class="btn btn-primary">Choisir Sièges</a>
       </div>
-      <!-- Premium -->
-      <div class="formule reveal">
+      <div class="plan reveal">
         <h3>Premium</h3>
         <div class="price-multi">
           <div>Citadine <b>60€</b></div>
           <div>SUV <b>70€</b></div>
           <div>Van <b>80€</b></div>
         </div>
-        <ul class="feat">
-          <li>Nettoyage complet intérieur</li>
-          <li>Vapeur + shampoing</li>
-          <li>Désinfection totale</li>
-          <li>Finition parfumée</li>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#8E1F1F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Nettoyage complet intérieur</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#8E1F1F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Vapeur + shampoing</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#8E1F1F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Désinfection totale</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#8E1F1F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Finition parfumée</li>
         </ul>
-        <a href="devis.html" class="btn btn-ghost">Choisir Premium</a>
+        <a href="devis.html" class="btn btn-outline">Choisir Premium</a>
       </div>
     </div>
-    <!-- Options -->
-    <div class="options-box reveal">
-      <span style="font-weight:600;color:var(--cream);">Options supplémentaires :</span>
-      <div class="opt">🧳 Coffre <b>+5€</b></div>
-      <div class="opt">🚗 Déplacement <b>+5€</b></div>
-      <div class="opt">🐾 Poils / Sable <b>+10€</b></div>
+    <div class="options reveal">
+      <span style="font-weight:700;">Options supplémentaires :</span>
+      <div class="o">🧳 Coffre <b>+5€</b></div>
+      <div class="o">🚗 Déplacement <b>+5€</b></div>
+      <div class="o">🐾 Poils / Sable <b>+10€</b></div>
     </div>
   </div>
 </section>
 
-<!-- ===== AVANT / APRÈS ===== -->
-<section id="avant-apres" style="background:var(--black-2);">
+<!-- AVANT / APRÈS -->
+<section class="bg-soft">
+  <div class="container center reveal">
+    <span class="eyebrow">Résultats</span>
+    <h2 class="s-title">Avant / Après</h2>
+    <p class="s-sub">Glissez le curseur pour découvrir la différence.</p>
+  </div>
   <div class="container">
-    <div style="text-align:center;" class="reveal">
-      <span class="section-tag">Résultats</span>
-      <h2 class="section-title">Avant / Après</h2>
-      <p class="section-subtitle" style="margin-left:auto;margin-right:auto;">Glissez le curseur pour découvrir la différence. Des résultats qui parlent d'eux-mêmes.</p>
-    </div>
     <div class="ba-grid">
       <div class="ba-item reveal">
-        <div class="ba-slider" data-ba>
-          <div class="ba-layer ba-after">APRÈS</div>
-          <div class="ba-layer ba-before">AVANT</div>
-          <span class="ba-tag b">Avant</span>
-          <span class="ba-tag a">Après</span>
-          <div class="ba-handle"></div>
-        </div>
-        <h4>Sièges textile</h4>
-        <p>Taches incrustées éliminées</p>
+        <div class="ba-slider" data-ba><div class="ba-layer ba-after">APRÈS</div><div class="ba-layer ba-before">AVANT</div><span class="ba-tag b">Avant</span><span class="ba-tag a">Après</span><div class="ba-handle"></div></div>
+        <h4>Sièges textile</h4><p>Taches incrustées éliminées</p>
       </div>
       <div class="ba-item reveal">
-        <div class="ba-slider" data-ba>
-          <div class="ba-layer ba-after">APRÈS</div>
-          <div class="ba-layer ba-before">AVANT</div>
-          <span class="ba-tag b">Avant</span>
-          <span class="ba-tag a">Après</span>
-          <div class="ba-handle"></div>
-        </div>
-        <h4>Tableau de bord</h4>
-        <p>Plastiques rénovés & assainis</p>
+        <div class="ba-slider" data-ba><div class="ba-layer ba-after">APRÈS</div><div class="ba-layer ba-before">AVANT</div><span class="ba-tag b">Avant</span><span class="ba-tag a">Après</span><div class="ba-handle"></div></div>
+        <h4>Tableau de bord</h4><p>Plastiques rénovés & assainis</p>
       </div>
       <div class="ba-item reveal">
-        <div class="ba-slider" data-ba>
-          <div class="ba-layer ba-after">APRÈS</div>
-          <div class="ba-layer ba-before">AVANT</div>
-          <span class="ba-tag b">Avant</span>
-          <span class="ba-tag a">Après</span>
-          <div class="ba-handle"></div>
-        </div>
-        <h4>Moquettes & tapis</h4>
-        <p>Injection-extraction en profondeur</p>
+        <div class="ba-slider" data-ba><div class="ba-layer ba-after">APRÈS</div><div class="ba-layer ba-before">AVANT</div><span class="ba-tag b">Avant</span><span class="ba-tag a">Après</span><div class="ba-handle"></div></div>
+        <h4>Moquettes & tapis</h4><p>Injection-extraction en profondeur</p>
       </div>
     </div>
-    <div style="text-align:center;margin-top:44px;" class="reveal">
-      <a href="devis.html" class="btn btn-gold">Estimer ma prestation →</a>
+    <div class="center" style="margin-top:40px;">
+      <a href="devis.html" class="btn btn-primary">Estimer ma prestation</a>
     </div>
   </div>
 </section>
 
-<!-- ===== FOOTER ===== -->
+<!-- FOOTER -->
 <footer>
   <div class="container">
     <div class="footer-grid">
       <div>
-        <div class="footer-logo">My<span class="gold">Clean</span></div>
+        <div class="footer-logo">My<span class="c">Clean</span></div>
         <p>Nettoyage intérieur automobile à domicile à Rennes et ses alentours. Matériel professionnel, résultat garanti.</p>
       </div>
       <div>
         <h5>Navigation</h5>
         <a href="index.html">Accueil</a>
-        <a href="formules.html">Formules</a>
-        <a href="index.html#avis">Avis clients</a>
+        <a href="formules.html">Prestations</a>
+        <a href="index.html#avis">Avis</a>
         <a href="contact.html#faq">FAQ</a>
-        <a href="devis.html">Devis gratuit</a>
+        <a href="devis.html">Devis</a>
       </div>
       <div>
         <h5>Contact</h5>
@@ -167,9 +151,17 @@
   </div>
 </footer>
 
-<!-- ===== FLOATING ===== -->
-<a href="https://wa.me/33772396372" class="float-wa" target="_blank" rel="noopener" aria-label="WhatsApp">🟢</a>
-<a href="tel:+33772396372" class="float-tel" aria-label="Appeler">📞</a>
+<!-- ACTION BAR (mobile) -->
+<div class="actionbar">
+  <a href="tel:+33772396372" class="btn btn-outline">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.2 2.2z" fill="#171717"/></svg>
+    Appeler
+  </a>
+  <a href="devis.html" class="btn btn-primary">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8l-5-5z" stroke="#fff" stroke-width="2" stroke-linejoin="round"/><path d="M14 3v5h5" stroke="#fff" stroke-width="2" stroke-linejoin="round"/></svg>
+    Devis
+  </a>
+</div>
 
 <script src="app.js"></script>
 </body>

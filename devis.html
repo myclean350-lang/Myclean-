@@ -7,133 +7,125 @@
 <meta name="description" content="Estimez votre prestation de nettoyage automobile MyClean en 1 minute. Devis en ligne gratuit et sans engagement à Rennes." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-<!-- ===== NAVBAR ===== -->
-<nav id="navbar">
+<!-- NAVBAR -->
+<nav>
   <div class="container nav-inner">
-    <a href="index.html" class="logo">My<span class="gold">Clean</span></a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="index.html">Accueil</a></li>
-      <li><a href="formules.html">Formules</a></li>
-      <li><a href="index.html#avis">Avis</a></li>
-      <li><a href="contact.html#faq">FAQ</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="devis.html" class="btn btn-gold active" style="padding:11px 24px;">Devis gratuit</a></li>
-    </ul>
+    <a href="index.html" class="logo">
+      <span class="pin"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#fff"/><circle cx="12" cy="9" r="2.4" fill="#171717"/></svg></span>
+      <span><b>My</b><b class="c">Clean</b></span>
+    </a>
+    <div class="nav-desktop">
+      <a href="formules.html">Prestations</a>
+      <a href="index.html#avis">Avis</a>
+      <a href="contact.html#faq">FAQ</a>
+      <a href="contact.html">Contact</a>
+      <a href="devis.html" class="nav-cta active">Devis</a>
+    </div>
     <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="formules.html">Prestations</a>
+  <a href="index.html#avis">Avis</a>
+  <a href="contact.html#faq">FAQ</a>
+  <a href="contact.html">Contact</a>
+  <a href="devis.html" class="cta">Demander un devis</a>
+</div>
 
-<!-- ===== DEVIS ===== -->
-<section id="devis" class="page-top">
+<!-- DEVIS -->
+<section class="page-head">
+  <div class="container center reveal">
+    <span class="eyebrow">Devis en ligne</span>
+    <h1 class="s-title">Estimez votre prestation en 1 minute</h1>
+    <p class="s-sub">Répondez à quelques questions et obtenez une estimation immédiate. Sans engagement.</p>
+  </div>
   <div class="container">
-    <div style="text-align:center;" class="reveal">
-      <span class="section-tag">Devis en ligne</span>
-      <h2 class="section-title">Estimez votre prestation en 1 minute</h2>
-      <p class="section-subtitle" style="margin-left:auto;margin-right:auto;">Répondez à quelques questions et obtenez une estimation immédiate. Sans engagement.</p>
-    </div>
-    <div class="devis-wrap reveal">
+    <div class="devis-card reveal">
       <div class="steps-bar" id="stepsBar">
         <div class="sdot active"></div><div class="sdot"></div><div class="sdot"></div><div class="sdot"></div><div class="sdot"></div>
       </div>
-
       <form id="devisForm" onsubmit="return false;">
-        <!-- Step 1 -->
         <div class="step active" data-step="1">
           <h3>1. Combien de véhicules ?</h3>
-          <p class="step-hint">Sélectionnez le nombre de véhicules à nettoyer.</p>
+          <p class="hint">Sélectionnez le nombre de véhicules à nettoyer.</p>
           <div class="opt-grid" data-single="vehicles">
             <div class="choice selected" data-val="1"><div class="ic">🚗</div><div class="t">1 véhicule</div></div>
             <div class="choice" data-val="2"><div class="ic">🚗🚗</div><div class="t">2 véhicules</div></div>
             <div class="choice" data-val="3"><div class="ic">🚗➕</div><div class="t">3 et +</div></div>
           </div>
         </div>
-
-        <!-- Step 2 -->
         <div class="step" data-step="2">
           <h3>2. Quelle formule ?</h3>
-          <p class="step-hint">Choisissez la prestation souhaitée.</p>
+          <p class="hint">Choisissez la prestation souhaitée.</p>
           <div class="opt-grid" data-single="formule">
             <div class="choice selected" data-val="express" data-price="20"><div class="ic">💨</div><div class="t">Express</div><div class="d">dès 20€</div></div>
             <div class="choice" data-val="sieges" data-price="40"><div class="ic">🪑</div><div class="t">Sièges</div><div class="d">dès 40€</div></div>
             <div class="choice" data-val="premium" data-price="60"><div class="ic">👑</div><div class="t">Premium</div><div class="d">dès 60€</div></div>
           </div>
         </div>
-
-        <!-- Step 3 -->
         <div class="step" data-step="3">
           <h3>3. Type de véhicule ?</h3>
-          <p class="step-hint">Le tarif Premium dépend du gabarit.</p>
+          <p class="hint">Le tarif Premium dépend du gabarit.</p>
           <div class="opt-grid" data-single="type">
             <div class="choice selected" data-val="citadine" data-premium="60"><div class="ic">🚙</div><div class="t">Citadine</div><div class="d">Premium 60€</div></div>
             <div class="choice" data-val="suv" data-premium="70"><div class="ic">🚐</div><div class="t">SUV / Berline</div><div class="d">Premium 70€</div></div>
             <div class="choice" data-val="van" data-premium="80"><div class="ic">🚌</div><div class="t">Van / Utilitaire</div><div class="d">Premium 80€</div></div>
           </div>
         </div>
-
-        <!-- Step 4 -->
         <div class="step" data-step="4">
           <h3>4. Options supplémentaires</h3>
-          <p class="step-hint">Personnalisez votre prestation.</p>
+          <p class="hint">Personnalisez votre prestation.</p>
           <div class="check-grid" data-multi="options">
-            <div class="check-row" data-val="coffre" data-price="5"><div class="cl"><span class="cbox">✓</span><span>🧳 Nettoyage du coffre</span></div><span class="price-tag">+5€</span></div>
-            <div class="check-row" data-val="deplacement" data-price="5"><div class="cl"><span class="cbox">✓</span><span>🚗 Déplacement (hors intra-muros)</span></div><span class="price-tag">+5€</span></div>
-            <div class="check-row" data-val="poils" data-price="10"><div class="cl"><span class="cbox">✓</span><span>🐾 Poils d'animaux / Sable</span></div><span class="price-tag">+10€</span></div>
+            <div class="check-row" data-val="coffre" data-price="5"><div class="cl"><span class="cbox">✓</span><span>🧳 Nettoyage du coffre</span></div><span class="pt">+5€</span></div>
+            <div class="check-row" data-val="deplacement" data-price="5"><div class="cl"><span class="cbox">✓</span><span>🚗 Déplacement (hors intra-muros)</span></div><span class="pt">+5€</span></div>
+            <div class="check-row" data-val="poils" data-price="10"><div class="cl"><span class="cbox">✓</span><span>🐾 Poils d'animaux / Sable</span></div><span class="pt">+10€</span></div>
           </div>
-          <div class="estimate">
-            <span class="lbl">Estimation de votre prestation :</span>
-            <span class="val" id="estimateVal">20€</span>
-          </div>
+          <div class="estimate"><span class="lbl">Estimation de votre prestation :</span><span class="val" id="estimateVal">20€</span></div>
         </div>
-
-        <!-- Step 5 -->
         <div class="step" data-step="5">
           <h3>5. Vos coordonnées</h3>
-          <p class="step-hint">On vous recontacte rapidement pour confirmer.</p>
+          <p class="hint">On vous recontacte rapidement pour confirmer.</p>
           <div class="field"><label>Nom complet</label><input type="text" id="f_nom" placeholder="Jean Dupont" /></div>
           <div class="field"><label>Téléphone</label><input type="tel" id="f_tel" placeholder="06 12 34 56 78" /></div>
           <div class="field"><label>Adresse</label><input type="text" id="f_adr" placeholder="Rue, 35000 Rennes" /></div>
           <div class="field"><label>Message (facultatif)</label><textarea id="f_msg" placeholder="Précisez vos besoins, disponibilités…"></textarea></div>
           <div class="estimate"><span class="lbl">Total estimé :</span><span class="val" id="estimateVal2">20€</span></div>
         </div>
-
-        <!-- Nav -->
         <div class="step-nav">
-          <button type="button" class="btn btn-ghost" id="prevBtn" style="visibility:hidden;">← Retour</button>
-          <button type="button" class="btn btn-gold" id="nextBtn">Continuer →</button>
+          <button type="button" class="btn btn-outline" id="prevBtn" style="visibility:hidden;">← Retour</button>
+          <button type="button" class="btn btn-primary" id="nextBtn">Continuer →</button>
         </div>
       </form>
-
-      <!-- Success -->
-      <div class="devis-success" id="devisSuccess">
-        <div class="ok-ic">✓</div>
+      <div class="devis-ok" id="devisOk">
+        <div class="okic">✓</div>
         <h3>Demande envoyée !</h3>
-        <p>Merci <span id="successName"></span>, votre demande de devis a bien été reçue. L'équipe MyClean vous recontacte très vite au numéro indiqué.</p>
-        <a href="https://wa.me/33772396372" class="btn btn-gold" style="margin-top:24px;">Nous écrire sur WhatsApp</a>
+        <p>Merci <span id="successName"></span>, votre demande de devis a bien été reçue. L'équipe MyClean vous recontacte très vite.</p>
+        <a href="https://wa.me/33772396372" class="btn btn-primary" style="margin-top:22px;">Nous écrire sur WhatsApp</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== FOOTER ===== -->
+<!-- FOOTER -->
 <footer>
   <div class="container">
     <div class="footer-grid">
       <div>
-        <div class="footer-logo">My<span class="gold">Clean</span></div>
+        <div class="footer-logo">My<span class="c">Clean</span></div>
         <p>Nettoyage intérieur automobile à domicile à Rennes et ses alentours. Matériel professionnel, résultat garanti.</p>
       </div>
       <div>
         <h5>Navigation</h5>
         <a href="index.html">Accueil</a>
-        <a href="formules.html">Formules</a>
-        <a href="index.html#avis">Avis clients</a>
+        <a href="formules.html">Prestations</a>
+        <a href="index.html#avis">Avis</a>
         <a href="contact.html#faq">FAQ</a>
-        <a href="devis.html">Devis gratuit</a>
+        <a href="devis.html">Devis</a>
       </div>
       <div>
         <h5>Contact</h5>
@@ -148,9 +140,17 @@
   </div>
 </footer>
 
-<!-- ===== FLOATING ===== -->
-<a href="https://wa.me/33772396372" class="float-wa" target="_blank" rel="noopener" aria-label="WhatsApp">🟢</a>
-<a href="tel:+33772396372" class="float-tel" aria-label="Appeler">📞</a>
+<!-- ACTION BAR (mobile) -->
+<div class="actionbar">
+  <a href="tel:+33772396372" class="btn btn-outline">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.2 2.2z" fill="#171717"/></svg>
+    Appeler
+  </a>
+  <a href="devis.html" class="btn btn-primary">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8l-5-5z" stroke="#fff" stroke-width="2" stroke-linejoin="round"/><path d="M14 3v5h5" stroke="#fff" stroke-width="2" stroke-linejoin="round"/></svg>
+    Devis
+  </a>
+</div>
 
 <script src="app.js"></script>
 </body>

@@ -8,174 +8,15 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-<style>
-  :root {
-    --brand: #8E1F1F;
-    --brand-dark: #761919;
-    --ink: #171717;
-    --text: #5b6066;
-    --muted: #8a8f96;
-    --bg: #ffffff;
-    --line: #e6e7e9;
-    --pill: #f6f6f7;
-    --radius: 16px;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    background: var(--bg);
-    color: var(--ink);
-    -webkit-font-smoothing: antialiased;
-    line-height: 1.5;
-  }
-  a { text-decoration: none; color: inherit; }
-  ul { list-style: none; }
-  img { max-width: 100%; display: block; }
-  .container { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 20px; }
-
-  /* ===== NAVBAR ===== */
-  nav {
-    position: sticky; top: 0; z-index: 50;
-    background: rgba(255,255,255,.86);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(0,0,0,.05);
-  }
-  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
-  .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.18rem; letter-spacing: -.02em; }
-  .logo .pin {
-    width: 34px; height: 34px; border-radius: 11px; background: var(--ink);
-    display: flex; align-items: center; justify-content: center;
-  }
-  .logo .pin svg { width: 18px; height: 18px; }
-  .logo b { font-weight: 800; }
-  .logo .c { color: var(--brand); }
-  .nav-desktop { display: none; gap: 30px; align-items: center; }
-  .nav-desktop a { font-size: .92rem; font-weight: 500; color: #3f4348; transition: color .2s; }
-  .nav-desktop a:hover { color: var(--brand); }
-  .nav-cta { background: var(--brand); color: #fff !important; padding: 10px 20px; border-radius: 11px; font-weight: 600; }
-  .burger {
-    width: 44px; height: 44px; border-radius: 12px; background: #f1f1f2; border: 1px solid var(--line);
-    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; cursor: pointer;
-  }
-  .burger span { width: 18px; height: 2px; background: var(--ink); border-radius: 2px; transition: .3s; }
-  .burger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
-  .burger.open span:nth-child(2) { opacity: 0; }
-  .burger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
-
-  /* mobile menu */
-  .mobile-menu {
-    position: fixed; inset: 64px 0 0 0; z-index: 49;
-    background: #fff; padding: 24px 20px;
-    transform: translateX(100%); transition: transform .35s ease;
-    display: flex; flex-direction: column; gap: 4px;
-  }
-  .mobile-menu.open { transform: translateX(0); }
-  .mobile-menu a { padding: 16px 6px; font-size: 1.1rem; font-weight: 600; border-bottom: 1px solid var(--line); }
-  .mobile-menu a.cta { margin-top: 18px; background: var(--brand); color: #fff; text-align: center; border-radius: 12px; border: none; }
-
-  /* ===== HERO ===== */
-  .hero { position: relative; overflow: hidden; padding: 26px 0 40px; }
-  .hero-media {
-    position: absolute; top: 0; right: 0; left: 0; height: 360px; z-index: 0;
-    background: url('assets/hero.jpg') center/cover no-repeat;
-  }
-  .hero-media::after {
-    content: ''; position: absolute; inset: 0;
-    background:
-      linear-gradient(180deg, rgba(255,255,255,.45) 0%, rgba(255,255,255,.72) 42%, #fff 78%),
-      linear-gradient(90deg, rgba(255,255,255,.75) 0%, rgba(255,255,255,.15) 60%, rgba(255,255,255,0) 100%);
-  }
-  .play {
-    position: absolute; top: 130px; right: 34px; z-index: 1;
-    width: 62px; height: 62px; border-radius: 50%;
-    background: rgba(255,255,255,.82); backdrop-filter: blur(4px);
-    box-shadow: 0 10px 30px rgba(0,0,0,.18);
-    display: flex; align-items: center; justify-content: center;
-  }
-  .play::before {
-    content: ''; border-style: solid; border-width: 9px 0 9px 15px;
-    border-color: transparent transparent transparent var(--brand); margin-left: 4px;
-  }
-  .hero-content { position: relative; z-index: 2; }
-  .badge {
-    display: inline-flex; align-items: center; gap: 7px;
-    background: var(--pill); border: 1px solid var(--line);
-    padding: 7px 14px; border-radius: 999px;
-    font-size: .72rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #5a5f65;
-    margin-bottom: 22px;
-  }
-  .badge svg { width: 13px; height: 13px; }
-  h1 {
-    font-size: clamp(2.1rem, 9vw, 2.9rem);
-    font-weight: 800; line-height: 1.08; letter-spacing: -.02em; color: var(--ink);
-    margin-bottom: 18px; max-width: 16ch;
-  }
-  h1 .c { color: var(--brand); }
-  .sub { color: var(--text); font-size: 1.04rem; max-width: 30ch; margin-bottom: 30px; }
-  .sub mark { background: rgba(142,31,31,.12); color: var(--brand); padding: 0 3px; border-radius: 3px; }
-
-  .hero-actions { display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px; }
-  .btn {
-    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-    height: 56px; border-radius: 13px; font-weight: 600; font-size: 1rem; font-family: inherit;
-    cursor: pointer; border: 1px solid transparent; transition: transform .15s ease, background .2s ease, box-shadow .2s ease;
-  }
-  .btn-primary { background: var(--brand); color: #fff; box-shadow: 0 8px 22px rgba(142,31,31,.25); }
-  .btn-primary:hover { background: var(--brand-dark); transform: translateY(-1px); }
-  .btn-outline { background: #fff; color: var(--ink); border-color: var(--line); box-shadow: 0 4px 14px rgba(0,0,0,.04); }
-  .btn-outline:hover { border-color: #cfd1d4; transform: translateY(-1px); }
-
-  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-  .stat .num { font-size: 1.7rem; font-weight: 800; color: var(--ink); letter-spacing: -.02em; line-height: 1; }
-  .stat .lbl { font-size: .82rem; color: var(--muted); margin-top: 6px; }
-
-  /* ===== STICKY BOTTOM BAR (mobile) ===== */
-  .actionbar {
-    position: fixed; bottom: 0; left: 0; right: 0; z-index: 60;
-    background: #fff; border-top: 1px solid var(--line);
-    box-shadow: 0 -6px 24px rgba(0,0,0,.06);
-    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
-    padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
-  }
-  .actionbar .btn { height: 50px; border-radius: 12px; }
-  body { padding-bottom: 86px; }
-
-  /* ===== DESKTOP ===== */
-  @media (min-width: 768px) {
-    body { padding-bottom: 0; }
-    .burger, .mobile-menu { display: none; }
-    .nav-desktop { display: flex; }
-    .actionbar { display: none; }
-
-    .hero { padding: 70px 0 90px; }
-    .hero .container { display: grid; grid-template-columns: 1.05fr .95fr; gap: 56px; align-items: center; }
-    .hero-media {
-      position: relative; top: auto; right: auto; left: auto;
-      height: 440px; border-radius: 22px; box-shadow: 0 30px 60px rgba(0,0,0,.16);
-    }
-    .hero-media::after {
-      background: linear-gradient(120deg, rgba(0,0,0,.05), rgba(0,0,0,0));
-    }
-    .play { top: 50%; right: 50%; transform: translate(50%, -50%); width: 76px; height: 76px; }
-    h1 { font-size: clamp(2.6rem, 4vw, 3.6rem); }
-    .sub { font-size: 1.12rem; max-width: 36ch; }
-    .hero-actions { flex-direction: row; }
-    .hero-actions .btn { padding: 0 28px; }
-    .stats { max-width: 460px; }
-    .stat .num { font-size: 2rem; }
-  }
-</style>
+<link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-<!-- ===== NAVBAR ===== -->
+<!-- NAVBAR -->
 <nav>
   <div class="container nav-inner">
     <a href="index.html" class="logo">
-      <span class="pin">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#fff"/><circle cx="12" cy="9" r="2.4" fill="#171717"/></svg>
-      </span>
+      <span class="pin"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#fff"/><circle cx="12" cy="9" r="2.4" fill="#171717"/></svg></span>
       <span><b>My</b><b class="c">Clean</b></span>
     </a>
     <div class="nav-desktop">
@@ -188,8 +29,6 @@
     <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
-
-<!-- ===== MOBILE MENU ===== -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="formules.html">Prestations</a>
   <a href="index.html#avis">Avis</a>
@@ -198,7 +37,7 @@
   <a href="devis.html" class="cta">Demander un devis</a>
 </div>
 
-<!-- ===== HERO ===== -->
+<!-- HERO -->
 <header class="hero">
   <div class="container hero-grid">
    <div class="hero-content">
@@ -224,7 +63,100 @@
   </div>
 </header>
 
-<!-- ===== STICKY ACTION BAR (mobile) ===== -->
+<!-- À PROPOS -->
+<section id="about">
+  <div class="container about">
+    <div class="about-photo reveal"></div>
+    <div class="reveal">
+      <span class="eyebrow">À propos de MyClean</span>
+      <h2 class="s-title">Le détail, au service de votre véhicule</h2>
+      <p class="s-sub">Basé à Rennes, MyClean offre un nettoyage intérieur automobile haut de gamme, directement chez vous. Matériel professionnel et souci du détail à chaque intervention.</p>
+      <ul class="checklist">
+        <li><span class="ck"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#8E1F1F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><b>Intervention à domicile</b> <span>— Rennes et jusqu'à 30 km.</span></div></li>
+        <li><span class="ck"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#8E1F1F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><b>Matériel professionnel</b> <span>— injecteur-extracteur, vapeur, produits premium.</span></div></li>
+        <li><span class="ck"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#8E1F1F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><b>Résultat immédiat & garanti</b> <span>— un intérieur sain et désinfecté.</span></div></li>
+        <li><span class="ck"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#8E1F1F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><b>Tarifs transparents</b> <span>— des formules claires, sans surprise.</span></div></li>
+      </ul>
+      <a href="devis.html" class="btn btn-primary" style="margin-top:26px;">Demander un devis</a>
+    </div>
+  </div>
+</section>
+
+<!-- POURQUOI NOUS -->
+<section class="bg-soft">
+  <div class="container">
+    <div class="center reveal">
+      <span class="eyebrow">Pourquoi nous choisir</span>
+      <h2 class="s-title">L'excellence à votre porte</h2>
+    </div>
+    <div class="grid-4">
+      <div class="card reveal"><div class="ic">🚗</div><h3>On se déplace</h3><p>Chez vous ou sur votre lieu de travail. Zéro contrainte.</p></div>
+      <div class="card reveal"><div class="ic">🛠️</div><h3>Matériel pro</h3><p>Injecteur-extracteur, vapeur et produits professionnels.</p></div>
+      <div class="card reveal"><div class="ic">✨</div><h3>Résultat immédiat</h3><p>Un intérieur propre, sain et désinfecté le jour même.</p></div>
+      <div class="card reveal"><div class="ic">⚡</div><h3>Réactivité</h3><p>Rendez-vous rapide, 7j/7, adapté à votre emploi du temps.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- AVIS -->
+<section id="avis">
+  <div class="container">
+    <div class="reviews-head reveal">
+      <div>
+        <span class="eyebrow">Ils nous font confiance</span>
+        <h2 class="s-title">Avis clients</h2>
+      </div>
+      <div class="reviews-score">
+        <div class="big">4,9</div>
+        <div><div class="stars">★★★★★</div><div style="color:var(--muted);font-size:.85rem;">Basé sur les avis Google</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="reviews-wrap reveal"><div class="reviews-track" id="reviewsTrack"></div></div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <div class="container reveal">
+    <h2>Prêt à retrouver une voiture impeccable ?</h2>
+    <p>Réservez votre créneau dès aujourd'hui. MyClean se déplace à Rennes et ses alentours, 7j/7.</p>
+    <div class="actions">
+      <a href="tel:+33772396372" class="btn btn-outline">Appeler maintenant</a>
+      <a href="devis.html" class="btn btn-primary">Obtenir mon devis</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">My<span class="c">Clean</span></div>
+        <p>Nettoyage intérieur automobile à domicile à Rennes et ses alentours. Matériel professionnel, résultat garanti.</p>
+      </div>
+      <div>
+        <h5>Navigation</h5>
+        <a href="index.html">Accueil</a>
+        <a href="formules.html">Prestations</a>
+        <a href="index.html#avis">Avis</a>
+        <a href="contact.html#faq">FAQ</a>
+        <a href="devis.html">Devis</a>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <a href="tel:+33954417407">09 54 41 74 07</a>
+        <a href="tel:+33772396372">07 72 39 63 72</a>
+        <a href="mailto:myclean35@gmail.com">myclean35@gmail.com</a>
+        <p>La Harpe, 35000 Rennes</p>
+        <p>Instagram & Facebook : @MYCLEAN35</p>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 MyClean — Tous droits réservés. Nettoyage automobile à domicile · Rennes.</div>
+  </div>
+</footer>
+
+<!-- ACTION BAR (mobile) -->
 <div class="actionbar">
   <a href="tel:+33772396372" class="btn btn-outline">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.2 2.2z" fill="#171717"/></svg>
@@ -236,16 +168,6 @@
   </a>
 </div>
 
-<script>
-  const burger = document.getElementById('burger');
-  const menu = document.getElementById('mobileMenu');
-  burger.addEventListener('click', () => {
-    burger.classList.toggle('open');
-    menu.classList.toggle('open');
-  });
-  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    burger.classList.remove('open'); menu.classList.remove('open');
-  }));
-</script>
+<script src="app.js"></script>
 </body>
 </html>
