@@ -56,7 +56,10 @@ nav {
 .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.18rem; letter-spacing: -.02em; }
 .logo .pin { width: 34px; height: 34px; border-radius: 11px; background: var(--ink); display: flex; align-items: center; justify-content: center; }
 .logo .pin svg { width: 18px; height: 18px; }
+.logo .logo-img { height: 40px; width: auto; display: block; }
 .logo .c { color: var(--brand); }
+.footer-logo { display: flex; align-items: center; gap: 9px; }
+.footer-logo .logo-img { height: 34px; width: auto; }
 .nav-desktop { display: none; gap: 30px; align-items: center; }
 .nav-desktop a { font-size: .92rem; font-weight: 500; color: #3f4348; transition: color .2s; }
 .nav-desktop a:hover, .nav-desktop a.active { color: var(--brand); }
