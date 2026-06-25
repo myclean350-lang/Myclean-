@@ -133,17 +133,21 @@ if (devisForm) {
   refresh();
 }
 
-/* ===== Formules dépliables (accordéon) ===== */
-document.querySelectorAll('.fcard .ftoggle').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const card = btn.closest('.fcard');
-    const details = card.querySelector('.fcard-details');
-    const open = card.classList.toggle('open');
-    details.style.maxHeight = open ? details.scrollHeight + 'px' : null;
-    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    btn.firstChild.textContent = open ? 'Réduire ' : 'En savoir plus ';
-  });
-});
+/* ===== Carrousel formules (indicateur de défilement) ===== */
+const fTrack = document.getElementById('formulesTrack');
+const fThumb = document.getElementById('fcardsThumb');
+if (fTrack && fThumb) {
+  const updateThumb = () => {
+    const max = fTrack.scrollWidth - fTrack.clientWidth;
+    const visible = fTrack.clientWidth / fTrack.scrollWidth;
+    const ratio = max > 0 ? fTrack.scrollLeft / max : 0;
+    fThumb.style.width = (visible * 100) + '%';
+    fThumb.style.left = (ratio * (100 - visible * 100)) + '%';
+  };
+  fTrack.addEventListener('scroll', updateThumb, { passive: true });
+  window.addEventListener('resize', updateThumb);
+  updateThumb();
+}
 
 /* ===== FAQ accordion ===== */
 document.querySelectorAll('.faq-item').forEach(item => {
