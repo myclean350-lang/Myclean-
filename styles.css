@@ -153,9 +153,9 @@ nav.scrolled {
 
 /* ===== HERO ===== */
 .hero {
-  min-height: 100vh;
+  min-height: auto;
   display: flex; align-items: center;
-  padding: 120px 0 70px;
+  padding: 132px 0 80px;
   position: relative;
   overflow: hidden;
   background:
@@ -172,35 +172,24 @@ nav.scrolled {
   mask-image: radial-gradient(circle at center, black, transparent 75%);
 }
 
-/* ===== HERO avec vidéo en fond ===== */
-.hero--video { background: #0c0c0c; }
-.hero-video {
-  position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: cover; z-index: 0; pointer-events: none;
+/* ===== HERO : vidéo horizontale (16:9) ===== */
+.hero-grid {
+  display: grid; grid-template-columns: 1.05fr .95fr;
+  gap: 50px; align-items: center; position: relative; z-index: 2;
 }
-.hero--video::before {
-  background-image: none;
-  background:
-    linear-gradient(105deg, rgba(8,0,0,.85) 0%, rgba(18,2,2,.58) 46%, rgba(123,1,2,.32) 100%),
-    linear-gradient(rgba(0,0,0,.28), rgba(0,0,0,.5));
-  mask-image: none;
-  z-index: 1;
+.hero-text { max-width: 600px; }
+.hero-media {
+  width: 100%; aspect-ratio: 16 / 9;
+  border-radius: var(--radius); overflow: hidden;
+  background: #0c0c0c; border: 1px solid rgba(0,0,0,.08);
+  box-shadow: var(--shadow);
 }
-.hero--video .hero-content { color: #fff; }
-.hero--video h1 { color: #fff; text-shadow: 0 2px 24px rgba(0,0,0,.5); }
-.hero--video h1 .gold {
-  background: linear-gradient(135deg, #ff6a6a, #e22020);
-  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+.hero-media .hero-video { width: 100%; height: 100%; object-fit: cover; display: block; }
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 22px; }
+  .hero-text { max-width: 100%; }
+  .hero-media { order: -1; } /* vidéo horizontale en haut sur mobile */
 }
-.hero--video p.sub { color: rgba(255,255,255,.9); }
-.hero--video .badge-pill {
-  background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.4);
-  color: #fff; backdrop-filter: blur(4px);
-}
-.hero--video .hero-badge .num { color: #fff; }
-.hero--video .hero-badge .lbl { color: rgba(255,255,255,.75); }
-.hero--video .btn-ghost { color: #fff; border-color: rgba(255,255,255,.6); }
-.hero--video .btn-ghost:hover { background: #fff; color: var(--gold); border-color: #fff; }
 
 .hero-content { position: relative; z-index: 2; max-width: 760px; }
 .hero .badge-pill {

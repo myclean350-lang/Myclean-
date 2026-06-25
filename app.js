@@ -19,6 +19,19 @@ if (burger && navLinks) {
   }));
 }
 
+/* ===== Hero video : démarrage immédiat ===== */
+const heroVideo = document.querySelector('.hero-video');
+if (heroVideo) {
+  heroVideo.muted = true; // requis pour l'autoplay sur mobile
+  const tryPlay = () => { const p = heroVideo.play(); if (p) p.catch(() => {}); };
+  tryPlay();
+  heroVideo.addEventListener('loadeddata', tryPlay);
+  heroVideo.addEventListener('canplay', tryPlay);
+  // relance au 1er geste si l'autoplay a été bloqué
+  ['touchstart', 'pointerdown', 'scroll'].forEach(ev =>
+    window.addEventListener(ev, tryPlay, { once: true, passive: true }));
+}
+
 /* ===== Scroll reveal ===== */
 const io = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
