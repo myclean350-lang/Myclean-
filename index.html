@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css?v=5" />
+<link rel="stylesheet" href="styles.css?v=6" />
 <link rel="icon" type="image/png" href="assets/logo-mark.png" />
 </head>
 <body>
@@ -109,19 +109,49 @@
         <div class="fic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#fff" stroke-width="2"/><path d="M12 7.5V12l3 2" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <h3>Formule Express</h3>
         <p>Aspiration en profondeur et nettoyage des plastiques. L'essentiel pour un intérieur propre rapidement — idéal pour un entretien régulier.</p>
-        <a href="formules.html" class="flink">En savoir plus →</a>
+        <button class="ftoggle" type="button" aria-expanded="false">En savoir plus <span class="chev">→</span></button>
+        <div class="fcard-details">
+          <div class="fprice">dès <b>20€</b></div>
+          <ul class="ffeat">
+            <li>Aspiration complète</li>
+            <li>Nettoyage des plastiques</li>
+            <li>Dépoussiérage intérieur</li>
+            <li>Finition soignée</li>
+          </ul>
+          <a href="devis.html" class="btn btn-primary btn-sm">Choisir cette formule</a>
+        </div>
       </article>
       <article class="fcard reveal">
         <div class="fic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 12l1.4-4.2A2 2 0 018.3 6.4h7.4a2 2 0 011.9 1.4L19 12M4.5 12h15v4.5h-15V12z" stroke="#fff" stroke-width="2" stroke-linejoin="round"/><circle cx="8" cy="16.5" r="1.4" fill="#fff"/><circle cx="16" cy="16.5" r="1.4" fill="#fff"/></svg></div>
         <h3>Formule Sièges</h3>
         <p>Nettoyage en profondeur des sièges. Élimination des taches incrustées, des odeurs et des impuretés pour des sièges propres, assainis et visiblement rafraîchis.</p>
-        <a href="formules.html" class="flink">En savoir plus →</a>
+        <button class="ftoggle" type="button" aria-expanded="false">En savoir plus <span class="chev">→</span></button>
+        <div class="fcard-details">
+          <div class="fprice">dès <b>40€</b></div>
+          <ul class="ffeat">
+            <li>Injecteur-extracteur</li>
+            <li>Shampoing des sièges</li>
+            <li>Nettoyage vapeur</li>
+            <li>Désinfection complète</li>
+          </ul>
+          <a href="devis.html" class="btn btn-primary btn-sm">Choisir cette formule</a>
+        </div>
       </article>
       <article class="fcard reveal">
         <div class="fic"><svg width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M12 3.2l2.5 5.1 5.6.8-4 3.9 1 5.6-5-2.6-5 2.6 1-5.6-4-3.9 5.6-.8L12 3.2z"/></svg></div>
         <h3>Formule Premium</h3>
         <p>Nettoyage intérieur complet et détaillé : aspiration en profondeur, plastiques, sièges, vitres et recoins, pour un habitacle propre, sain et agréable à conduire.</p>
-        <a href="formules.html" class="flink">En savoir plus →</a>
+        <button class="ftoggle" type="button" aria-expanded="false">En savoir plus <span class="chev">→</span></button>
+        <div class="fcard-details">
+          <div class="fprice fprice-multi"><span>Citadine <b>60€</b></span><span>SUV <b>70€</b></span><span>Van <b>80€</b></span></div>
+          <ul class="ffeat">
+            <li>Nettoyage complet intérieur</li>
+            <li>Vapeur + shampoing</li>
+            <li>Désinfection totale</li>
+            <li>Finition parfumée</li>
+          </ul>
+          <a href="devis.html" class="btn btn-primary btn-sm">Choisir cette formule</a>
+        </div>
       </article>
     </div>
   </div>
@@ -213,6 +243,6 @@
   </a>
 </div>
 
-<script src="app.js?v=5"></script>
+<script src="app.js?v=6"></script>
 </body>
 </html>

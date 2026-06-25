@@ -133,6 +133,18 @@ if (devisForm) {
   refresh();
 }
 
+/* ===== Formules dépliables (accordéon) ===== */
+document.querySelectorAll('.fcard .ftoggle').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const card = btn.closest('.fcard');
+    const details = card.querySelector('.fcard-details');
+    const open = card.classList.toggle('open');
+    details.style.maxHeight = open ? details.scrollHeight + 'px' : null;
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    btn.firstChild.textContent = open ? 'Réduire ' : 'En savoir plus ';
+  });
+});
+
 /* ===== FAQ accordion ===== */
 document.querySelectorAll('.faq-item').forEach(item => {
   const q = item.querySelector('.faq-q');
