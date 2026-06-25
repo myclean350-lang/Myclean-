@@ -34,6 +34,4 @@ yarn-error.log*
 next-env.d.ts
 
 # generated preview screenshots
-/preview/shot-*.png
-/preview/new-*.png
-/preview/clone-*.png
+/preview/*.png
