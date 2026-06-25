@@ -108,6 +108,12 @@ nav {
 .card h3 { font-size: 1.12rem; font-weight: 700; margin-bottom: 8px; }
 .card p { color: var(--text); font-size: .95rem; }
 
+/* ===== Pourquoi nous : carrousel auto-défilant ===== */
+.why-wrap { overflow: hidden; margin-top: 44px; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+.why-track { display: flex; gap: 22px; width: max-content; padding: 8px 22px; animation: scrollR 34s linear infinite; }
+.why-track:hover { animation-play-state: paused; }
+.why-track .card { width: 270px; flex-shrink: 0; }
+
 /* ===== Formules ===== */
 .plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 44px; }
 .plan { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 32px 28px; position: relative; display: flex; flex-direction: column; transition: transform .25s, box-shadow .25s, border-color .25s; }
