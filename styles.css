@@ -94,6 +94,27 @@ nav {
 .stat .num { font-size: 1.7rem; font-weight: 800; color: var(--ink); letter-spacing: -.02em; line-height: 1; }
 .stat .lbl { font-size: .82rem; color: var(--muted); margin-top: 6px; }
 
+/* ===== HERO sombre (image plein fond + voile noir) ===== */
+.hero--dark { background: #0a0a0a; min-height: 72vh; display: flex; align-items: center; padding: 70px 0 80px; }
+.hero--dark .hero-bg { position: absolute; inset: 0; z-index: 0; background: url('assets/hero.jpg') center/cover no-repeat; }
+.hero--dark::after {
+  content: ''; position: absolute; inset: 0; z-index: 1;
+  background:
+    linear-gradient(90deg, rgba(0,0,0,.88) 0%, rgba(0,0,0,.62) 55%, rgba(0,0,0,.42) 100%),
+    linear-gradient(rgba(0,0,0,.22), rgba(0,0,0,.55));
+}
+.hero.hero--dark .container { display: block; position: relative; z-index: 2; max-width: var(--maxw); }
+.hero--dark .hero-content { color: #fff; max-width: 600px; }
+.hero--dark h1 { color: #fff; }
+.hero--dark h1 .c { color: #ff5a4f; }
+.hero--dark .sub { color: rgba(255,255,255,.82); max-width: 34ch; }
+.hero--dark .sub mark { background: rgba(255,90,79,.2); color: #ff8079; }
+.hero--dark .badge { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.28); color: rgba(255,255,255,.85); }
+.hero--dark .stat .num { color: #fff; }
+.hero--dark .stat .lbl { color: rgba(255,255,255,.6); }
+.hero--dark .btn-outline { background: rgba(255,255,255,.06); color: #fff; border-color: rgba(255,255,255,.5); box-shadow: none; }
+.hero--dark .btn-outline:hover { background: rgba(255,255,255,.14); border-color: #fff; }
+
 /* ===== Page header (internal pages) ===== */
 .page-head { padding: 56px 0 10px; }
 
