@@ -507,30 +507,13 @@ footer { background: var(--black-2); border-top: 1px solid rgba(0,0,0,.08); padd
   .socials { justify-content: center; }
 }
 @media (max-width: 768px) {
-  /* Mobile : photo en banniere horizontale en haut + texte sombre sur fond blanc */
-  .hero--video { background: var(--black); }
-  .hero { display: block; min-height: auto; padding: 88px 0 36px; overflow: visible; }
-  .hero-img {
-    position: relative; width: 100%; height: auto; aspect-ratio: 16 / 10;
-    opacity: 1; border-radius: var(--radius); margin-bottom: 24px;
+  /* Mobile : texte par-dessus l'image, hauteur mini 60vh, voile renforce pour la lisibilite */
+  .hero { display: flex; align-items: center; min-height: 60vh; padding: 100px 0 48px; overflow: hidden; }
+  .hero--video::before {
+    background-image: none;
+    background: linear-gradient(rgba(0,0,0,.42) 0%, rgba(0,0,0,.62) 55%, rgba(8,0,0,.72) 100%);
+    mask-image: none; z-index: 1;
   }
-  .hero--video::before { display: none; } /* on enleve le voile */
-  .hero--video .hero-content { color: var(--cream); }
-  .hero--video h1 { color: var(--cream); text-shadow: none; }
-  .hero--video h1 .gold {
-    background: linear-gradient(135deg, var(--gold), var(--gold-light));
-    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-  }
-  .hero--video p.sub { color: var(--gray); }
-  .hero--video .badge-pill {
-    background: rgba(155,1,2,.1); border-color: rgba(155,1,2,.3);
-    color: var(--gold-light); backdrop-filter: none;
-  }
-  .hero--video .hero-badge .num { color: var(--gold); }
-  .hero--video .hero-badge .lbl { color: var(--gray); }
-  .hero--video .btn-ghost { color: var(--cream); border-color: rgba(0,0,0,.25); }
-  .hero--video .btn-ghost:hover { background: transparent; color: var(--gold); border-color: var(--gold); }
-
   /* compactage */
   .hero .badge-pill { margin-bottom: 16px; }
   .hero h1 { font-size: 2rem; margin-bottom: 14px; }
