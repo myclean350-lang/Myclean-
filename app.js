@@ -39,25 +39,27 @@ document.querySelectorAll('[data-ba]').forEach(slider => {
 
 /* ===== Reviews carousel ===== */
 const reviews = [
-  { n: 'Camille L.', t: 'Voiture méconnaissable ! Les sièges étaient pleins de taches, tout est parti. Travail soigné et ponctuel.' },
-  { n: 'Mehdi B.', t: 'Service au top, déplacement à domicile super pratique. Intérieur impeccable et parfumé. Je recommande à 100%.' },
-  { n: 'Sophie R.', t: 'Très professionnel. Le coffre et les moquettes comme neufs. Rapport qualité/prix excellent.' },
-  { n: 'Julien D.', t: 'J\'avais des poils de chien partout, plus aucune trace ! Matériel pro, vrai résultat. Merci MyClean.' },
-  { n: 'Laura M.', t: 'Réactif, sympa et minutieux. Rendez-vous pris le jour même. Ma citadine n\'a jamais été aussi propre.' },
-  { n: 'Antoine P.', t: 'Prestation Premium sur mon SUV : nickel. Désinfection vapeur impeccable, odeur fraîche garantie.' },
-  { n: 'Nadia K.', t: 'Ils se déplacent chez vous, c\'est génial. Travail propre, sérieux et tarif honnête. Top !' },
-  { n: 'Thomas G.', t: 'Injecteur-extracteur de pro, les sièges en tissu sont comme neufs. Je referai appel à eux sans hésiter.' },
+  { n: 'Camille L.', d: '14/03/2025', t: 'Voiture méconnaissable ! Les sièges étaient pleins de taches, tout est parti. Travail soigné et ponctuel.' },
+  { n: 'Mehdi B.', d: '02/03/2025', t: 'Service au top, déplacement à domicile super pratique. Intérieur impeccable et parfumé. Je recommande à 100%.' },
+  { n: 'Sophie R.', d: '21/02/2025', t: 'Très professionnel. Le coffre et les moquettes comme neufs. Rapport qualité/prix excellent.' },
+  { n: 'Julien D.', d: '09/02/2025', t: 'J\'avais des poils de chien partout, plus aucune trace ! Matériel pro, vrai résultat. Merci MyClean.' },
+  { n: 'Laura M.', d: '28/01/2025', t: 'Réactif, sympa et minutieux. Rendez-vous pris le jour même. Ma citadine n\'a jamais été aussi propre.' },
+  { n: 'Antoine P.', d: '15/01/2025', t: 'Prestation Premium sur mon SUV : nickel. Désinfection vapeur impeccable, odeur fraîche garantie.' },
+  { n: 'Nadia K.', d: '03/01/2025', t: 'Ils se déplacent chez vous, c\'est génial. Travail propre, sérieux et tarif honnête. Top !' },
+  { n: 'Thomas L.', d: '21/12/2024', t: 'Injecteur-extracteur de pro, les sièges en tissu sont comme neufs. Je referai appel à eux sans hésiter.' },
 ];
 const track = document.getElementById('reviewsTrack');
 if (track) {
+  const GLOGO = '<svg class="g-logo-sm" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>';
+  const CHECK = '<svg class="verified" width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#4285F4"/><path d="M7 12.5l3 3 7-7" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   const card = r => `
     <div class="review">
-      <div class="stars">★★★★★</div>
-      <p>"${r.t}"</p>
-      <div class="who">
-        <div class="av">${r.n.charAt(0)}</div>
-        <div><div class="nm">${r.n}</div><div class="gg">Avis Google ✓</div></div>
+      <div class="review-top">
+        ${GLOGO}
+        <div class="review-id"><div class="nm">${r.n}</div><div class="dt">${r.d}</div></div>
       </div>
+      <div class="stars">★★★★★ ${CHECK}</div>
+      <p>"${r.t}"</p>
     </div>`;
   track.innerHTML = [...reviews, ...reviews].map(card).join('');
 }
