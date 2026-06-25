@@ -287,7 +287,7 @@ nav {
 
 /* ===== Footer ===== */
 footer { background: #141416; color: #fff; border-top: 1px solid rgba(255,255,255,.08); padding: 56px 0 28px; }
-.footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 36px; margin-bottom: 36px; }
+.footer-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 36px; margin-bottom: 32px; }
 .footer-grid h5 { font-size: .82rem; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.5); margin-bottom: 16px; }
 .footer-grid p, .footer-grid a { color: rgba(255,255,255,.7); font-size: .92rem; margin-bottom: 9px; display: block; transition: color .2s; }
 .footer-grid a:hover { color: #fff; }

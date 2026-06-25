@@ -39,14 +39,14 @@ document.querySelectorAll('[data-ba]').forEach(slider => {
 
 /* ===== Reviews carousel ===== */
 const reviews = [
-  { n: 'Camille L.', d: '14/03/2025', t: 'Voiture méconnaissable ! Les sièges étaient pleins de taches, tout est parti. Travail soigné et ponctuel.' },
-  { n: 'Mehdi B.', d: '02/03/2025', t: 'Service au top, déplacement à domicile super pratique. Intérieur impeccable et parfumé. Je recommande à 100%.' },
-  { n: 'Sophie R.', d: '21/02/2025', t: 'Très professionnel. Le coffre et les moquettes comme neufs. Rapport qualité/prix excellent.' },
-  { n: 'Julien D.', d: '09/02/2025', t: 'J\'avais des poils de chien partout, plus aucune trace ! Matériel pro, vrai résultat. Merci MyClean.' },
-  { n: 'Laura M.', d: '28/01/2025', t: 'Réactif, sympa et minutieux. Rendez-vous pris le jour même. Ma citadine n\'a jamais été aussi propre.' },
-  { n: 'Antoine P.', d: '15/01/2025', t: 'Prestation Premium sur mon SUV : nickel. Désinfection vapeur impeccable, odeur fraîche garantie.' },
-  { n: 'Nadia K.', d: '03/01/2025', t: 'Ils se déplacent chez vous, c\'est génial. Travail propre, sérieux et tarif honnête. Top !' },
-  { n: 'Thomas L.', d: '21/12/2024', t: 'Injecteur-extracteur de pro, les sièges en tissu sont comme neufs. Je referai appel à eux sans hésiter.' },
+  { n: 'Camille L.', d: '18/06/2026', t: 'Voiture méconnaissable ! Les sièges étaient pleins de taches, tout est parti. Travail soigné et ponctuel.' },
+  { n: 'Mehdi B.', d: '11/06/2026', t: 'Service au top, déplacement à domicile super pratique. Intérieur impeccable et parfumé. Je recommande à 100%.' },
+  { n: 'Sophie R.', d: '03/06/2026', t: 'Très professionnel. Le coffre et les moquettes comme neufs. Rapport qualité/prix excellent.' },
+  { n: 'Julien D.', d: '26/05/2026', t: 'J\'avais des poils de chien partout, plus aucune trace ! Matériel pro, vrai résultat. Merci MyClean.' },
+  { n: 'Laura M.', d: '17/05/2026', t: 'Réactif, sympa et minutieux. Rendez-vous pris le jour même. Ma citadine n\'a jamais été aussi propre.' },
+  { n: 'Antoine P.', d: '08/05/2026', t: 'Prestation Premium sur mon SUV : nickel. Désinfection vapeur impeccable, odeur fraîche garantie.' },
+  { n: 'Nadia K.', d: '28/04/2026', t: 'Ils se déplacent chez vous, c\'est génial. Travail propre, sérieux et tarif honnête. Top !' },
+  { n: 'Thomas L.', d: '19/04/2026', t: 'Injecteur-extracteur de pro, les sièges en tissu sont comme neufs. Je referai appel à eux sans hésiter.' },
 ];
 const track = document.getElementById('reviewsTrack');
 if (track) {
