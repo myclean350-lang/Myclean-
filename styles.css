@@ -116,7 +116,7 @@ nav {
 
 /* ===== Formules (cartes avec photo) ===== */
 .presta-hero { height: 300px; border-radius: 22px; background-size: cover; background-position: center; margin: 4px 0; border: 1px solid var(--line); box-shadow: 0 18px 44px rgba(0,0,0,.14); }
-.plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; margin-top: 40px; align-items: start; }
+.plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; margin-top: 40px; align-items: stretch; }
 .plan { background: #fff; border: 1px solid var(--line); border-radius: 22px; overflow: hidden; display: flex; flex-direction: column; transition: transform .25s, box-shadow .25s, border-color .25s; }
 .plan:hover { transform: translateY(-5px); box-shadow: 0 22px 50px rgba(0,0,0,.10); }
 .plan.featured { border-color: var(--brand); box-shadow: 0 22px 50px rgba(142,31,31,.12); }
