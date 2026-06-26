@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css?v=32" />
+<link rel="stylesheet" href="styles.css?v=33" />
 <link rel="icon" type="image/png" href="assets/logo-mark.png" />
 </head>
 <body>
@@ -81,10 +81,11 @@
         <div class="step" data-step="3">
           <div class="q-head"><span class="q-step">Étape 3 / 5</span><span class="q-name">Prestation</span></div>
           <h3 class="q-title">Prestation souhaitée</h3>
-          <div class="select-list" data-single="formule">
-            <button type="button" class="srow" data-val="express"><span class="lbl">Formule Express</span><span class="pt">20€</span><span class="rcheck">✓</span></button>
-            <button type="button" class="srow" data-val="sieges"><span class="lbl">Formule Sièges</span><span class="pt">40€</span><span class="rcheck">✓</span></button>
-            <button type="button" class="srow" data-val="premium"><span class="lbl">Formule Premium</span><span class="pt">dès 60€</span><span class="rcheck">✓</span></button>
+          <p class="q-sub">Sélectionnez une ou plusieurs formules.</p>
+          <div class="select-list" data-multi="formules">
+            <button type="button" class="srow check" data-val="express"><span class="cbox"></span><span class="lbl">Formule Express</span><span class="pt">20€</span></button>
+            <button type="button" class="srow check" data-val="sieges"><span class="cbox"></span><span class="lbl">Formule Sièges</span><span class="pt">40€</span></button>
+            <button type="button" class="srow check" data-val="premium"><span class="cbox"></span><span class="lbl">Formule Premium</span><span class="pt">dès 60€</span></button>
           </div>
           <h3 class="q-title" style="margin-top:24px;">Extras (facultatif)</h3>
           <div class="select-list" data-multi="options">
@@ -164,6 +165,6 @@
   </a>
 </div>
 
-<script src="app.js?v=32"></script>
+<script src="app.js?v=33"></script>
 </body>
 </html>

@@ -95,7 +95,7 @@ if (devisForm) {
   const FORM_LABEL = { express: 'Express', sieges: 'Sièges', premium: 'Premium' };
   const OPT_LABEL = { coffre: 'Nettoyage coffre', deplacement: 'Déplacement', poils: 'Poils / sable' };
 
-  const state = { vehicles: 1, categories: [], formule: null, options: {} };
+  const state = { vehicles: 1, categories: [], formules: [], options: {} };
   let step = 1;
   const total = 5;
   const steps = document.querySelectorAll('.step');
@@ -106,16 +106,19 @@ if (devisForm) {
   // Construit le détail du devis (une ligne par véhicule + options)
   const buildLines = () => {
     const lines = [];
-    if (!state.formule) return lines;
+    if (!state.formules.length) return lines;
     const cats = state.categories.length ? state.categories : ['citadine'];
-    const fl = FORM_LABEL[state.formule];
-    if (cats.length <= 1) {
-      const c = cats[0], qty = state.vehicles;
-      lines.push({ label: `Formule ${fl} — ${CAT_LABEL[c]}${qty > 1 ? ' ×' + qty : ''}`, price: PRICE[state.formule][c] * qty });
-    } else {
-      // Plusieurs modèles : on additionne un véhicule de chaque type
-      cats.forEach(c => lines.push({ label: `Formule ${fl} — ${CAT_LABEL[c]}`, price: PRICE[state.formule][c] }));
-    }
+    // Une ligne par formule choisie × situation véhicule
+    state.formules.forEach(f => {
+      const fl = FORM_LABEL[f];
+      if (cats.length <= 1) {
+        const c = cats[0], qty = state.vehicles;
+        lines.push({ label: `Formule ${fl} — ${CAT_LABEL[c]}${qty > 1 ? ' ×' + qty : ''}`, price: PRICE[f][c] * qty });
+      } else {
+        // Plusieurs modèles : on additionne un véhicule de chaque type
+        cats.forEach(c => lines.push({ label: `Formule ${fl} — ${CAT_LABEL[c]}`, price: PRICE[f][c] }));
+      }
+    });
     Object.keys(state.options).forEach(k => lines.push({ label: OPT_LABEL[k] || k, price: state.options[k], opt: true }));
     return lines;
   };
@@ -127,7 +130,7 @@ if (devisForm) {
     ).join('');
     const sum = lines.reduce((a, l) => a + l.price, 0);
     const el = document.getElementById('estimateVal');
-    if (el) el.textContent = state.formule ? sum + '€' : '—';
+    if (el) el.textContent = state.formules.length ? sum + '€' : '—';
   };
 
   // Choix unique (véhicules, prestation)
@@ -138,7 +141,6 @@ if (devisForm) {
         group.querySelectorAll('.num, .srow').forEach(o => o.classList.remove('selected'));
         opt.classList.add('selected');
         if (key === 'vehicles') state.vehicles = parseInt(opt.dataset.val);
-        if (key === 'formule') state.formule = opt.dataset.val;
         refreshEstimate(); updateNav();
       });
     });
@@ -152,6 +154,8 @@ if (devisForm) {
         opt.classList.toggle('selected');
         if (key === 'categories') {
           state.categories = [...group.querySelectorAll('.srow.selected')].map(o => o.dataset.val);
+        } else if (key === 'formules') {
+          state.formules = [...group.querySelectorAll('.srow.selected')].map(o => o.dataset.val);
         } else {
           const val = opt.dataset.val, price = parseInt(opt.dataset.price || 0);
           if (opt.classList.contains('selected')) state.options[val] = price; else delete state.options[val];
@@ -163,7 +167,7 @@ if (devisForm) {
 
   const stepValid = () => {
     if (step === 2) return state.categories.length > 0;
-    if (step === 3) return !!state.formule;
+    if (step === 3) return state.formules.length > 0;
     if (step === 4) {
       const v = id => (document.getElementById(id).value || '').trim();
       return v('f_prenom') && v('f_nom') && v('f_tel');
