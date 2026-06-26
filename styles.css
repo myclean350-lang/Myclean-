@@ -23,6 +23,7 @@ ul { list-style: none; }
 img { max-width: 100%; display: block; }
 .container { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 20px; }
 section { padding: 76px 0; position: relative; }
+section[id] { scroll-margin-top: 84px; }
 .bg-soft { background: var(--bg-2); }
 
 /* ===== Buttons ===== */
