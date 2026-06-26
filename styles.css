@@ -256,8 +256,11 @@ nav {
 .q-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
 .q-step { color: var(--muted); font-size: .8rem; letter-spacing: .05em; text-transform: uppercase; }
 .q-name { font-weight: 700; color: var(--ink); }
-.q-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 6px; }
+.step .q-title { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
 .q-sub { color: var(--muted); font-size: .9rem; margin-bottom: 4px; }
+/* Hauteur de carte constante : la navigation reste en bas sur chaque étape */
+#devisForm { display: flex; flex-direction: column; min-height: 420px; }
+.step.active { display: flex; flex-direction: column; flex: 1 1 auto; }
 
 /* Sélecteur numérique (1/2/3/4+) */
 .num-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 16px; }
@@ -315,7 +318,7 @@ nav {
 .field input, .field textarea { width: 100%; background: #fff; border: 1px solid var(--line); border-radius: 11px; padding: 13px 15px; color: var(--ink); font-family: inherit; font-size: .95rem; transition: border-color .2s; }
 .field input:focus, .field textarea:focus { outline: none; border-color: var(--brand); }
 .field textarea { resize: vertical; min-height: 90px; }
-.step-nav { display: flex; justify-content: space-between; margin-top: 28px; gap: 12px; }
+.step-nav { display: flex; justify-content: space-between; margin-top: auto; padding-top: 26px; gap: 12px; }
 .step-nav .btn { flex: 0 0 auto; }
 .devis-ok { display: none; text-align: center; padding: 26px 0; }
 .devis-ok.show { display: block; animation: fade .5s ease; }
