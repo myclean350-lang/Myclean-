@@ -280,6 +280,7 @@ nav {
 /* Choix unique sélectionné = plein bordeaux */
 .srow.selected:not(.check) { background: var(--brand); border-color: var(--brand); color: #fff; }
 .srow.selected:not(.check) .rcheck { opacity: 1; }
+.srow.selected:not(.check) .pt { color: #fff; }
 /* Choix multiple (case à cocher) */
 .srow.check .cbox { width: 24px; height: 24px; border-radius: 7px; border: 2px solid #cdd0d4; flex-shrink: 0; position: relative; transition: .18s; }
 .srow.check.selected { background: var(--brand); border-color: var(--brand); color: #fff; }

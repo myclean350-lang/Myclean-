@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css?v=30" />
+<link rel="stylesheet" href="styles.css?v=31" />
 <link rel="icon" type="image/png" href="assets/logo-mark.png" />
 </head>
 <body>
@@ -82,9 +82,9 @@
           <div class="q-head"><span class="q-step">Étape 3 / 5</span><span class="q-name">Prestation</span></div>
           <h3 class="q-title">Prestation souhaitée</h3>
           <div class="select-list" data-single="formule">
-            <button type="button" class="srow" data-val="express" data-price="20"><span class="lbl">Formule Express</span><span class="rcheck">✓</span></button>
-            <button type="button" class="srow" data-val="sieges" data-price="40"><span class="lbl">Formule Sièges</span><span class="rcheck">✓</span></button>
-            <button type="button" class="srow" data-val="premium" data-price="0"><span class="lbl">Formule Premium</span><span class="rcheck">✓</span></button>
+            <button type="button" class="srow" data-val="express"><span class="lbl">Formule Express</span><span class="pt">20€</span><span class="rcheck">✓</span></button>
+            <button type="button" class="srow" data-val="sieges"><span class="lbl">Formule Sièges</span><span class="pt">40€</span><span class="rcheck">✓</span></button>
+            <button type="button" class="srow" data-val="premium"><span class="lbl">Formule Premium</span><span class="pt">dès 60€</span><span class="rcheck">✓</span></button>
           </div>
         </div>
 
@@ -112,6 +112,7 @@
           <div class="field" style="margin-top:18px;"><label>Message (facultatif)</label><textarea id="f_msg" placeholder="Précisez vos besoins, disponibilités…"></textarea></div>
           <div class="recap" id="recapLines"></div>
           <div class="estimate"><span class="lbl">Total estimé :</span><span class="val" id="estimateVal">—</span></div>
+          <p class="q-note">Tarif indicatif — le devis définitif est confirmé par l'équipe selon l'état du véhicule.</p>
         </div>
 
         <div class="step-nav">
@@ -162,6 +163,6 @@
   </a>
 </div>
 
-<script src="app.js?v=30"></script>
+<script src="app.js?v=31"></script>
 </body>
 </html>
