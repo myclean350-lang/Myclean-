@@ -261,7 +261,7 @@ nav {
 
 /* Sélecteur numérique (1/2/3/4+) */
 .num-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 16px; }
-.num { height: 72px; border: 1px solid var(--line); border-radius: 16px; background: #fff; font-size: 1.3rem; font-weight: 700; color: var(--ink); cursor: pointer; font-family: inherit; transition: .18s; }
+.num { height: 58px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--line); border-radius: 14px; background: #fff; font-size: 1.15rem; font-weight: 700; line-height: 1; color: var(--ink); cursor: pointer; font-family: inherit; transition: .18s; }
 .num:hover { border-color: #d9bcbc; }
 .num.selected { background: var(--brand); border-color: var(--brand); color: #fff; }
 
