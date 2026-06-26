@@ -85,8 +85,17 @@ if (track) {
 /* ===== Devis multi-step form ===== */
 const devisForm = document.getElementById('devisForm');
 if (devisForm) {
-  const catPrice = { citadine: 60, suv: 70, van: 80 };
-  const state = { vehicles: 1, categories: [], formule: null, formulePrice: 0, options: {} };
+  // Tarifs : prix par formule ET par modèle de véhicule
+  const PRICE = {
+    express: { citadine: 20, suv: 20, van: 20 },
+    sieges:  { citadine: 40, suv: 40, van: 40 },
+    premium: { citadine: 60, suv: 70, van: 80 }
+  };
+  const CAT_LABEL = { citadine: 'Citadine / Berline', suv: 'SUV / 4x4', van: 'Van / Monospace' };
+  const FORM_LABEL = { express: 'Express', sieges: 'Sièges', premium: 'Premium' };
+  const OPT_LABEL = { coffre: 'Nettoyage coffre', deplacement: 'Déplacement', poils: 'Poils / sable' };
+
+  const state = { vehicles: 1, categories: [], formule: null, options: {} };
   let step = 1;
   const total = 5;
   const steps = document.querySelectorAll('.step');
@@ -94,16 +103,31 @@ if (devisForm) {
   const prevBtn = document.getElementById('prevBtn');
   const nextBtn = document.getElementById('nextBtn');
 
-  const compute = () => {
-    const base = state.formule === 'premium'
-      ? Math.max(60, ...state.categories.map(c => catPrice[c] || 0))
-      : state.formulePrice;
-    const opts = Object.values(state.options).reduce((a, b) => a + b, 0);
-    return (base + opts) * state.vehicles;
+  // Construit le détail du devis (une ligne par véhicule + options)
+  const buildLines = () => {
+    const lines = [];
+    if (!state.formule) return lines;
+    const cats = state.categories.length ? state.categories : ['citadine'];
+    const fl = FORM_LABEL[state.formule];
+    if (cats.length <= 1) {
+      const c = cats[0], qty = state.vehicles;
+      lines.push({ label: `Formule ${fl} — ${CAT_LABEL[c]}${qty > 1 ? ' ×' + qty : ''}`, price: PRICE[state.formule][c] * qty });
+    } else {
+      // Plusieurs modèles : on additionne un véhicule de chaque type
+      cats.forEach(c => lines.push({ label: `Formule ${fl} — ${CAT_LABEL[c]}`, price: PRICE[state.formule][c] }));
+    }
+    Object.keys(state.options).forEach(k => lines.push({ label: OPT_LABEL[k] || k, price: state.options[k], opt: true }));
+    return lines;
   };
   const refreshEstimate = () => {
+    const lines = buildLines();
+    const box = document.getElementById('recapLines');
+    if (box) box.innerHTML = lines.map(l =>
+      `<div class="recap-line${l.opt ? ' opt' : ''}"><span>${l.label}</span><b>${l.opt ? '+' : ''}${l.price}€</b></div>`
+    ).join('');
+    const sum = lines.reduce((a, l) => a + l.price, 0);
     const el = document.getElementById('estimateVal');
-    if (el) el.textContent = state.formule ? compute() + '€' : '—';
+    if (el) el.textContent = state.formule ? sum + '€' : '—';
   };
 
   // Choix unique (véhicules, prestation)
@@ -114,7 +138,7 @@ if (devisForm) {
         group.querySelectorAll('.num, .srow').forEach(o => o.classList.remove('selected'));
         opt.classList.add('selected');
         if (key === 'vehicles') state.vehicles = parseInt(opt.dataset.val);
-        if (key === 'formule') { state.formule = opt.dataset.val; state.formulePrice = parseInt(opt.dataset.price); }
+        if (key === 'formule') state.formule = opt.dataset.val;
         refreshEstimate(); updateNav();
       });
     });

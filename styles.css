@@ -287,6 +287,13 @@ nav {
 .srow.check.selected .cbox::after { content: '✓'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--brand); font-size: .85rem; font-weight: 800; }
 .srow.check.selected .pt { color: #fff; }
 
+/* Détail du devis (récapitulatif) */
+.recap { margin-top: 22px; display: grid; gap: 9px; }
+.recap-line { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; font-size: .92rem; color: var(--text); }
+.recap-line b { color: var(--ink); font-weight: 600; white-space: nowrap; }
+.recap-line.opt { color: var(--muted); }
+.recap-line.opt b { color: var(--brand); }
+
 /* Bouton désactivé */
 .btn.is-disabled { opacity: .4; pointer-events: none; }
 .steps-bar { display: flex; gap: 8px; margin-bottom: 30px; }
