@@ -226,7 +226,7 @@ if (devisForm) {
   };
 
   const sendEmail = (d, summary) => {
-    return fetch('https://formsubmit.co/ajax/myclean35@gmail.com', {
+    return fetch('https://formsubmit.co/ajax/myclean.350@gmail.com', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({
