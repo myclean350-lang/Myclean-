@@ -152,9 +152,21 @@ nav {
 .zone-photo { height: 420px; border-radius: 20px; background: url('assets/about.jpg') center/cover; border: 1px solid var(--line); box-shadow: 0 24px 50px rgba(0,0,0,.14); }
 .zone-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 26px; }
 .zone-chips li { background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 7px 14px; font-size: .85rem; font-weight: 500; color: var(--ink); }
+.ba-slide { display: none; }
+.ba-slide.active { display: block; animation: fade .4s ease; }
+.ba-slide .ba-slider { box-shadow: 0 18px 40px rgba(0,0,0,.12); }
+.ba-cap { text-align: center; margin-top: 14px; font-weight: 600; color: var(--ink); }
+.ba-cap span { display: block; color: var(--muted); font-weight: 400; font-size: .85rem; margin-top: 2px; }
+.ba-nav { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 14px; }
+.ba-prev, .ba-next { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: #fff; cursor: pointer; font-size: 1.5rem; line-height: 1; color: var(--ink); display: flex; align-items: center; justify-content: center; transition: .2s; }
+.ba-prev:hover, .ba-next:hover { border-color: var(--brand); color: var(--brand); }
+.ba-dots { display: flex; gap: 7px; }
+.ba-dots button { width: 8px; height: 8px; border-radius: 999px; border: none; background: #d3d4d6; cursor: pointer; padding: 0; transition: .2s; }
+.ba-dots button.active { background: var(--brand); width: 22px; }
 @media (max-width: 980px) {
   .zone { grid-template-columns: 1fr; gap: 26px; }
   .zone-photo { height: 240px; order: 2; }
+  .zone-ba { order: 2; }
 }
 
 /* ===== Nos formules (cartes) ===== */

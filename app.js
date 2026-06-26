@@ -37,6 +37,24 @@ document.querySelectorAll('[data-ba]').forEach(slider => {
   slider.addEventListener('touchend', () => active = false);
 });
 
+/* ===== Carrousel Avant/Après (Zone) ===== */
+const baCar = document.getElementById('baCarousel');
+if (baCar) {
+  const slides = baCar.querySelectorAll('.ba-slide');
+  const dots = document.querySelectorAll('.ba-dots button');
+  let idx = 0;
+  const show = i => {
+    idx = (i + slides.length) % slides.length;
+    slides.forEach((s, n) => s.classList.toggle('active', n === idx));
+    dots.forEach((d, n) => d.classList.toggle('active', n === idx));
+  };
+  const prev = document.querySelector('.ba-prev');
+  const next = document.querySelector('.ba-next');
+  if (prev) prev.addEventListener('click', () => show(idx - 1));
+  if (next) next.addEventListener('click', () => show(idx + 1));
+  dots.forEach((d, n) => d.addEventListener('click', () => show(n)));
+}
+
 /* ===== Reviews carousel ===== */
 const reviews = [
   { n: 'Camille L.', d: '18/06/2026', t: 'Voiture méconnaissable ! Les sièges étaient pleins de taches, tout est parti. Travail soigné et ponctuel.' },
