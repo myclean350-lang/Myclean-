@@ -191,15 +191,73 @@ if (devisForm) {
     if (el) el.addEventListener('input', updateNav);
   });
 
+  // Récapitulatif texte (email + WhatsApp)
+  const val = id => (document.getElementById(id).value || '').trim();
+  const buildData = () => {
+    const lines = buildLines();
+    const totalPrice = lines.reduce((a, l) => a + l.price, 0);
+    return {
+      prenom: val('f_prenom'), nom: val('f_nom'), email: val('f_email'),
+      tel: val('f_tel'), cp: val('f_cp'), message: val('f_msg'),
+      vehicules: state.vehicles,
+      categories: state.categories.map(c => CAT_LABEL[c] || c).join(', ') || '—',
+      formules: state.formules.map(f => FORM_LABEL[f] || f).join(', ') || '—',
+      extras: Object.keys(state.options).map(k => OPT_LABEL[k] || k).join(', ') || 'aucun',
+      lines, totalPrice
+    };
+  };
+  const buildSummary = d => {
+    const L = [
+      'Nouvelle demande de devis MyClean', '',
+      'Client : ' + d.prenom + ' ' + d.nom,
+      'Téléphone : ' + d.tel,
+      'Email : ' + (d.email || '—'),
+      'Code postal : ' + (d.cp || '—'), '',
+      'Véhicules : ' + d.vehicules,
+      'Catégories : ' + d.categories,
+      'Formules : ' + d.formules,
+      'Extras : ' + d.extras, '',
+      'Détail :'
+    ];
+    d.lines.forEach(l => L.push('• ' + l.label + ' : ' + (l.opt ? '+' : '') + l.price + '€'));
+    L.push('TOTAL estimé : ' + d.totalPrice + '€');
+    if (d.message) { L.push(''); L.push('Message : ' + d.message); }
+    return L.join('\n');
+  };
+
+  const sendEmail = (d, summary) => {
+    return fetch('https://formsubmit.co/ajax/myclean35@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject: 'Demande de devis — ' + d.prenom + ' ' + d.nom,
+        _captcha: 'false',
+        _template: 'table',
+        Prénom: d.prenom, Nom: d.nom, Téléphone: d.tel, Email: d.email || '—',
+        'Code postal': d.cp || '—', 'Nombre de véhicules': String(d.vehicules),
+        'Catégorie(s)': d.categories, 'Formule(s)': d.formules, 'Extras': d.extras,
+        'Total estimé': d.totalPrice + '€', 'Récapitulatif': summary,
+        Message: d.message || '—'
+      })
+    });
+  };
+
   nextBtn.addEventListener('click', () => {
     if (nextBtn.classList.contains('is-disabled')) return;
-    if (step < total) { show(step + 1); }
-    else {
-      devisForm.style.display = 'none';
-      document.getElementById('progress').style.display = 'none';
-      document.getElementById('successName').textContent = document.getElementById('f_prenom').value.trim();
-      document.getElementById('devisOk').classList.add('show');
-    }
+    if (step < total) { show(step + 1); return; }
+    // Envoi
+    const d = buildData();
+    const summary = buildSummary(d);
+    // 1) Email via FormSubmit (silencieux, n'empêche pas la confirmation)
+    sendEmail(d, summary).catch(() => {});
+    // 2) Bouton WhatsApp pré-rempli vers le numéro MyClean
+    const wa = document.getElementById('waBtn');
+    if (wa) wa.href = 'https://wa.me/33772396372?text=' + encodeURIComponent(summary);
+    // 3) Écran de confirmation
+    devisForm.style.display = 'none';
+    document.getElementById('progress').style.display = 'none';
+    document.getElementById('successName').textContent = d.prenom;
+    document.getElementById('devisOk').classList.add('show');
   });
   prevBtn.addEventListener('click', () => { if (step > 1) show(step - 1); });
   show(1);
