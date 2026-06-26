@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css?v=22" />
+<link rel="stylesheet" href="styles.css?v=23" />
 <link rel="icon" type="image/png" href="assets/logo-mark.png" />
 </head>
 <body>
@@ -42,64 +42,78 @@
 <section class="page-head">
   <div class="container center reveal">
     <span class="eyebrow">Devis en ligne</span>
-    <h1 class="s-title">Estimez votre prestation en 1 minute</h1>
-    <p class="s-sub">Répondez à quelques questions et obtenez une estimation immédiate. Sans engagement.</p>
+    <h1 class="s-title">Obtenez votre devis en <span class="c">2 minutes.</span></h1>
+    <p class="s-sub">Réponse rapide. Sans engagement.</p>
   </div>
   <div class="container">
     <div class="devis-card reveal">
-      <div class="steps-bar" id="stepsBar">
-        <div class="sdot active"></div><div class="sdot"></div><div class="sdot"></div><div class="sdot"></div><div class="sdot"></div>
+      <div class="progress" id="progress">
+        <span class="seg active"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span>
       </div>
       <form id="devisForm" onsubmit="return false;">
+
+        <!-- ÉTAPE 1 : Véhicules -->
         <div class="step active" data-step="1">
-          <h3>1. Combien de véhicules ?</h3>
-          <p class="hint">Sélectionnez le nombre de véhicules à nettoyer.</p>
-          <div class="opt-grid" data-single="vehicles">
-            <div class="choice selected" data-val="1"><div class="ic">🚗</div><div class="t">1 véhicule</div></div>
-            <div class="choice" data-val="2"><div class="ic">🚗🚗</div><div class="t">2 véhicules</div></div>
-            <div class="choice" data-val="3"><div class="ic">🚗➕</div><div class="t">3 et +</div></div>
+          <div class="q-head"><span class="q-step">Étape 1 / 5</span><span class="q-name">Véhicules</span></div>
+          <h3 class="q-title">Nombre de véhicules à nettoyer</h3>
+          <div class="num-grid" data-single="vehicles">
+            <button type="button" class="num selected" data-val="1">1</button>
+            <button type="button" class="num" data-val="2">2</button>
+            <button type="button" class="num" data-val="3">3</button>
+            <button type="button" class="num" data-val="4">4+</button>
           </div>
         </div>
+
+        <!-- ÉTAPE 2 : Catégorie(s) — choix multiple -->
         <div class="step" data-step="2">
-          <h3>2. Quelle formule ?</h3>
-          <p class="hint">Choisissez la prestation souhaitée.</p>
-          <div class="opt-grid" data-single="formule">
-            <div class="choice selected" data-val="express" data-price="20"><div class="ic">💨</div><div class="t">Express</div><div class="d">dès 20€</div></div>
-            <div class="choice" data-val="sieges" data-price="40"><div class="ic">🪑</div><div class="t">Sièges</div><div class="d">dès 40€</div></div>
-            <div class="choice" data-val="premium" data-price="60"><div class="ic">👑</div><div class="t">Premium</div><div class="d">dès 60€</div></div>
+          <div class="q-head"><span class="q-step">Étape 2 / 5</span><span class="q-name">Catégorie(s)</span></div>
+          <h3 class="q-title">Catégorie(s) de véhicule</h3>
+          <p class="q-sub">Sélectionnez plusieurs catégories si vos véhicules ne sont pas du même type.</p>
+          <div class="select-list" data-multi="categories">
+            <button type="button" class="srow check" data-val="citadine"><span class="cbox"></span><span class="lbl">Citadine / Berline</span></button>
+            <button type="button" class="srow check" data-val="suv"><span class="cbox"></span><span class="lbl">SUV / 4x4</span></button>
+            <button type="button" class="srow check" data-val="van"><span class="cbox"></span><span class="lbl">Van / Monospace</span></button>
           </div>
         </div>
+
+        <!-- ÉTAPE 3 : Prestation — choix unique -->
         <div class="step" data-step="3">
-          <h3>3. Type de véhicule ?</h3>
-          <p class="hint">Le tarif Premium dépend du gabarit.</p>
-          <div class="opt-grid" data-single="type">
-            <div class="choice selected" data-val="citadine" data-premium="60"><div class="ic">🚙</div><div class="t">Citadine</div><div class="d">Premium 60€</div></div>
-            <div class="choice" data-val="suv" data-premium="70"><div class="ic">🚐</div><div class="t">SUV / Berline</div><div class="d">Premium 70€</div></div>
-            <div class="choice" data-val="van" data-premium="80"><div class="ic">🚌</div><div class="t">Van / Utilitaire</div><div class="d">Premium 80€</div></div>
+          <div class="q-head"><span class="q-step">Étape 3 / 5</span><span class="q-name">Prestation</span></div>
+          <h3 class="q-title">Prestation souhaitée</h3>
+          <div class="select-list" data-single="formule">
+            <button type="button" class="srow" data-val="express" data-price="20"><span class="lbl">Formule Express</span><span class="rcheck">✓</span></button>
+            <button type="button" class="srow" data-val="sieges" data-price="40"><span class="lbl">Formule Sièges</span><span class="rcheck">✓</span></button>
+            <button type="button" class="srow" data-val="premium" data-price="0"><span class="lbl">Formule Premium</span><span class="rcheck">✓</span></button>
           </div>
         </div>
+
+        <!-- ÉTAPE 4 : Vos infos -->
         <div class="step" data-step="4">
-          <h3>4. Options supplémentaires</h3>
-          <p class="hint">Personnalisez votre prestation.</p>
-          <div class="check-grid" data-multi="options">
-            <div class="check-row" data-val="coffre" data-price="5"><div class="cl"><span class="cbox">✓</span><span>🧳 Nettoyage du coffre</span></div><span class="pt">+5€</span></div>
-            <div class="check-row" data-val="deplacement" data-price="5"><div class="cl"><span class="cbox">✓</span><span>🚗 Déplacement (hors intra-muros)</span></div><span class="pt">+5€</span></div>
-            <div class="check-row" data-val="poils" data-price="10"><div class="cl"><span class="cbox">✓</span><span>🐾 Poils d'animaux / Sable</span></div><span class="pt">+10€</span></div>
-          </div>
-          <div class="estimate"><span class="lbl">Estimation de votre prestation :</span><span class="val" id="estimateVal">20€</span></div>
-        </div>
-        <div class="step" data-step="5">
-          <h3>5. Vos coordonnées</h3>
-          <p class="hint">On vous recontacte rapidement pour confirmer.</p>
-          <div class="field"><label>Nom complet</label><input type="text" id="f_nom" placeholder="Jean Dupont" /></div>
+          <div class="q-head"><span class="q-step">Étape 4 / 5</span><span class="q-name">Vos infos</span></div>
+          <div class="field"><label>Prénom</label><input type="text" id="f_prenom" placeholder="Jean" /></div>
+          <div class="field"><label>Nom</label><input type="text" id="f_nom" placeholder="Dupont" /></div>
+          <div class="field"><label>Email</label><input type="email" id="f_email" placeholder="jean.dupont@email.com" /></div>
           <div class="field"><label>Téléphone</label><input type="tel" id="f_tel" placeholder="06 12 34 56 78" /></div>
-          <div class="field"><label>Adresse</label><input type="text" id="f_adr" placeholder="Rue, 35000 Rennes" /></div>
-          <div class="field"><label>Message (facultatif)</label><textarea id="f_msg" placeholder="Précisez vos besoins, disponibilités…"></textarea></div>
-          <div class="estimate"><span class="lbl">Total estimé :</span><span class="val" id="estimateVal2">20€</span></div>
+          <div class="field"><label>Code postal</label><input type="text" id="f_cp" placeholder="35000" /></div>
         </div>
+
+        <!-- ÉTAPE 5 : Options & estimation -->
+        <div class="step" data-step="5">
+          <div class="q-head"><span class="q-step">Étape 5 / 5</span><span class="q-name">Estimation</span></div>
+          <h3 class="q-title">Options supplémentaires</h3>
+          <p class="q-sub">Ajoutez les extras dont vous avez besoin (facultatif).</p>
+          <div class="select-list" data-multi="options">
+            <button type="button" class="srow check" data-val="coffre" data-price="5"><span class="cbox"></span><span class="lbl">Nettoyage coffre</span><span class="pt">+5€</span></button>
+            <button type="button" class="srow check" data-val="deplacement" data-price="5"><span class="cbox"></span><span class="lbl">Déplacement dans Rennes</span><span class="pt">+5€</span></button>
+            <button type="button" class="srow check" data-val="poils" data-price="10"><span class="cbox"></span><span class="lbl">Poils / sable / moisissure</span><span class="pt">+10€</span></button>
+          </div>
+          <div class="field" style="margin-top:18px;"><label>Message (facultatif)</label><textarea id="f_msg" placeholder="Précisez vos besoins, disponibilités…"></textarea></div>
+          <div class="estimate"><span class="lbl">Estimation indicative :</span><span class="val" id="estimateVal">—</span></div>
+        </div>
+
         <div class="step-nav">
-          <button type="button" class="btn btn-outline" id="prevBtn" style="visibility:hidden;">← Retour</button>
-          <button type="button" class="btn btn-primary" id="nextBtn">Continuer →</button>
+          <button type="button" class="btn btn-outline" id="prevBtn">← Retour</button>
+          <button type="button" class="btn btn-primary" id="nextBtn">Suivant →</button>
         </div>
       </form>
       <div class="devis-ok" id="devisOk">
@@ -145,6 +159,6 @@
   </a>
 </div>
 
-<script src="app.js?v=22"></script>
+<script src="app.js?v=23"></script>
 </body>
 </html>

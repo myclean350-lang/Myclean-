@@ -244,7 +244,46 @@ nav {
 .gs-sub { font-size: .82rem; color: var(--muted); margin-top: 2px; }
 
 /* ===== Devis form ===== */
+.s-title .c { color: var(--brand); }
 .devis-card { max-width: 720px; margin: 40px auto 0; background: #fff; border: 1px solid var(--line); border-radius: 22px; padding: 36px; box-shadow: 0 20px 50px rgba(0,0,0,.06); }
+
+/* Barre de progression (segments) */
+.progress { display: flex; gap: 8px; margin-bottom: 30px; }
+.progress .seg { flex: 1; height: 5px; border-radius: 999px; background: #ececee; transition: background .4s; }
+.progress .seg.active { background: var(--brand); }
+
+/* En-tête d'étape */
+.q-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.q-step { color: var(--muted); font-size: .8rem; letter-spacing: .05em; text-transform: uppercase; }
+.q-name { font-weight: 700; color: var(--ink); }
+.q-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 6px; }
+.q-sub { color: var(--muted); font-size: .9rem; margin-bottom: 4px; }
+
+/* Sélecteur numérique (1/2/3/4+) */
+.num-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 16px; }
+.num { height: 72px; border: 1px solid var(--line); border-radius: 16px; background: #fff; font-size: 1.3rem; font-weight: 700; color: var(--ink); cursor: pointer; font-family: inherit; transition: .18s; }
+.num:hover { border-color: #d9bcbc; }
+.num.selected { background: var(--brand); border-color: var(--brand); color: #fff; }
+
+/* Listes de choix (lignes) */
+.select-list { display: grid; gap: 12px; margin-top: 16px; }
+.srow { display: flex; align-items: center; gap: 13px; width: 100%; text-align: left; border: 1px solid var(--line); border-radius: 14px; padding: 18px; background: #fff; cursor: pointer; font-family: inherit; font-size: 1rem; font-weight: 600; color: var(--ink); transition: .18s; }
+.srow:hover { border-color: #d9bcbc; }
+.srow .lbl { flex-grow: 1; }
+.srow .pt { color: var(--brand); font-weight: 700; }
+.srow .rcheck { opacity: 0; color: #fff; font-weight: 800; transition: opacity .15s; }
+/* Choix unique sélectionné = plein bordeaux */
+.srow.selected:not(.check) { background: var(--brand); border-color: var(--brand); color: #fff; }
+.srow.selected:not(.check) .rcheck { opacity: 1; }
+/* Choix multiple (case à cocher) */
+.srow.check .cbox { width: 24px; height: 24px; border-radius: 7px; border: 2px solid #cdd0d4; flex-shrink: 0; position: relative; transition: .18s; }
+.srow.check.selected { background: var(--brand); border-color: var(--brand); color: #fff; }
+.srow.check.selected .cbox { background: #fff; border-color: #fff; }
+.srow.check.selected .cbox::after { content: '✓'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--brand); font-size: .85rem; font-weight: 800; }
+.srow.check.selected .pt { color: #fff; }
+
+/* Bouton désactivé */
+.btn.is-disabled { opacity: .4; pointer-events: none; }
 .steps-bar { display: flex; gap: 8px; margin-bottom: 30px; }
 .sdot { flex: 1; height: 5px; border-radius: 999px; background: #ececee; transition: background .4s; }
 .sdot.active { background: var(--brand); }

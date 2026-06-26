@@ -85,72 +85,96 @@ if (track) {
 /* ===== Devis multi-step form ===== */
 const devisForm = document.getElementById('devisForm');
 if (devisForm) {
-  const state = { vehicles: 1, formule: 'express', formulePrice: 20, type: 'citadine', premium: 60, options: {} };
-  let currentStep = 1;
-  const totalSteps = 5;
+  const catPrice = { citadine: 60, suv: 70, van: 80 };
+  const state = { vehicles: 1, categories: [], formule: null, formulePrice: 0, options: {} };
+  let step = 1;
+  const total = 5;
   const steps = document.querySelectorAll('.step');
-  const dots = document.querySelectorAll('#stepsBar .sdot');
+  const segs = document.querySelectorAll('#progress .seg');
   const prevBtn = document.getElementById('prevBtn');
   const nextBtn = document.getElementById('nextBtn');
 
   const compute = () => {
-    let base = state.formule === 'premium' ? state.premium : state.formulePrice;
-    let opts = 0; Object.values(state.options).forEach(v => opts += v);
+    const base = state.formule === 'premium'
+      ? Math.max(60, ...state.categories.map(c => catPrice[c] || 0))
+      : state.formulePrice;
+    const opts = Object.values(state.options).reduce((a, b) => a + b, 0);
     return (base + opts) * state.vehicles;
   };
-  const refresh = () => {
-    const v = compute() + '€';
-    const e1 = document.getElementById('estimateVal');
-    const e2 = document.getElementById('estimateVal2');
-    if (e1) e1.textContent = v;
-    if (e2) e2.textContent = v;
+  const refreshEstimate = () => {
+    const el = document.getElementById('estimateVal');
+    if (el) el.textContent = state.formule ? compute() + '€' : '—';
   };
 
+  // Choix unique (véhicules, prestation)
   document.querySelectorAll('[data-single]').forEach(group => {
     const key = group.dataset.single;
-    group.querySelectorAll('.choice').forEach(choice => {
-      choice.addEventListener('click', () => {
-        group.querySelectorAll('.choice').forEach(c => c.classList.remove('selected'));
-        choice.classList.add('selected');
-        if (key === 'vehicles') state.vehicles = parseInt(choice.dataset.val);
-        if (key === 'formule') { state.formule = choice.dataset.val; state.formulePrice = parseInt(choice.dataset.price); }
-        if (key === 'type') { state.type = choice.dataset.val; state.premium = parseInt(choice.dataset.premium); }
-        refresh();
+    group.querySelectorAll('.num, .srow').forEach(opt => {
+      opt.addEventListener('click', () => {
+        group.querySelectorAll('.num, .srow').forEach(o => o.classList.remove('selected'));
+        opt.classList.add('selected');
+        if (key === 'vehicles') state.vehicles = parseInt(opt.dataset.val);
+        if (key === 'formule') { state.formule = opt.dataset.val; state.formulePrice = parseInt(opt.dataset.price); }
+        refreshEstimate(); updateNav();
       });
     });
   });
 
-  document.querySelectorAll('[data-multi="options"] .check-row').forEach(row => {
-    row.addEventListener('click', () => {
-      row.classList.toggle('selected');
-      const val = row.dataset.val, price = parseInt(row.dataset.price);
-      if (row.classList.contains('selected')) state.options[val] = price; else delete state.options[val];
-      refresh();
+  // Choix multiple (catégories, options)
+  document.querySelectorAll('[data-multi]').forEach(group => {
+    const key = group.dataset.multi;
+    group.querySelectorAll('.srow').forEach(opt => {
+      opt.addEventListener('click', () => {
+        opt.classList.toggle('selected');
+        if (key === 'categories') {
+          state.categories = [...group.querySelectorAll('.srow.selected')].map(o => o.dataset.val);
+        } else {
+          const val = opt.dataset.val, price = parseInt(opt.dataset.price || 0);
+          if (opt.classList.contains('selected')) state.options[val] = price; else delete state.options[val];
+        }
+        refreshEstimate(); updateNav();
+      });
     });
   });
 
-  const showStep = n => {
+  const stepValid = () => {
+    if (step === 2) return state.categories.length > 0;
+    if (step === 3) return !!state.formule;
+    if (step === 4) {
+      const v = id => (document.getElementById(id).value || '').trim();
+      return v('f_prenom') && v('f_nom') && v('f_tel');
+    }
+    return true;
+  };
+  const updateNav = () => { nextBtn.classList.toggle('is-disabled', !stepValid()); };
+
+  const show = n => {
+    step = n;
     steps.forEach(s => s.classList.toggle('active', parseInt(s.dataset.step) === n));
-    dots.forEach((d, i) => d.classList.toggle('active', i < n));
-    prevBtn.style.visibility = n === 1 ? 'hidden' : 'visible';
-    nextBtn.textContent = n === totalSteps ? 'Envoyer ✓' : 'Continuer →';
-    if (n === totalSteps) refresh();
+    segs.forEach((s, i) => s.classList.toggle('active', i < n));
+    prevBtn.classList.toggle('is-disabled', n === 1);
+    nextBtn.textContent = n === total ? 'Envoyer ma demande' : 'Suivant →';
+    if (n === total) refreshEstimate();
+    updateNav();
   };
 
+  ['f_prenom', 'f_nom', 'f_tel', 'f_email', 'f_cp'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', updateNav);
+  });
+
   nextBtn.addEventListener('click', () => {
-    if (currentStep < totalSteps) { currentStep++; showStep(currentStep); }
+    if (nextBtn.classList.contains('is-disabled')) return;
+    if (step < total) { show(step + 1); }
     else {
-      const nom = document.getElementById('f_nom').value.trim();
-      const tel = document.getElementById('f_tel').value.trim();
-      if (!nom || !tel) { alert('Merci de renseigner au moins votre nom et votre téléphone.'); return; }
       devisForm.style.display = 'none';
-      document.getElementById('stepsBar').style.display = 'none';
-      document.getElementById('successName').textContent = nom;
+      document.getElementById('progress').style.display = 'none';
+      document.getElementById('successName').textContent = document.getElementById('f_prenom').value.trim();
       document.getElementById('devisOk').classList.add('show');
     }
   });
-  prevBtn.addEventListener('click', () => { if (currentStep > 1) { currentStep--; showStep(currentStep); } });
-  refresh();
+  prevBtn.addEventListener('click', () => { if (step > 1) show(step - 1); });
+  show(1);
 }
 
 /* ===== Carrousel formules (indicateur de défilement) ===== */
