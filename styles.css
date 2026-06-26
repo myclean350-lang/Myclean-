@@ -108,9 +108,10 @@ nav {
 .card p { color: var(--text); font-size: .95rem; }
 
 /* ===== Pourquoi nous : carrousel auto-défilant ===== */
-.why-wrap { overflow: hidden; margin-top: 44px; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
-.why-track { display: flex; gap: 22px; width: max-content; padding: 8px 22px; animation: scrollR 34s linear infinite; }
-.why-track:hover { animation-play-state: paused; }
+.why-wrap { overflow-x: auto; overflow-y: hidden; margin-top: 44px; cursor: grab; touch-action: pan-x; scrollbar-width: none; -webkit-overflow-scrolling: touch; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+.why-wrap::-webkit-scrollbar { display: none; }
+.why-wrap.grabbing { cursor: grabbing; }
+.why-track { display: flex; gap: 22px; width: max-content; padding: 8px 22px; user-select: none; }
 .why-track .card { width: 270px; flex-shrink: 0; }
 
 /* ===== Formules ===== */
@@ -213,10 +214,10 @@ nav {
 .reviews-score { display: flex; align-items: center; gap: 14px; }
 .reviews-score .big { font-size: 2.6rem; font-weight: 800; color: var(--brand); line-height: 1; }
 .stars { color: #f0a500; letter-spacing: 2px; }
-.reviews-wrap { overflow: hidden; margin-top: 40px; -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); }
-.reviews-track { display: flex; gap: 18px; width: max-content; animation: scrollR 46s linear infinite; }
-.reviews-track:hover { animation-play-state: paused; }
-@keyframes scrollR { from { transform: translateX(0);} to { transform: translateX(-50%);} }
+.reviews-wrap { overflow-x: auto; overflow-y: hidden; margin-top: 40px; cursor: grab; touch-action: pan-x; scrollbar-width: none; -webkit-overflow-scrolling: touch; -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); }
+.reviews-wrap::-webkit-scrollbar { display: none; }
+.reviews-wrap.grabbing { cursor: grabbing; }
+.reviews-track { display: flex; gap: 18px; width: max-content; user-select: none; }
 .review { width: 330px; flex-shrink: 0; background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 24px; box-shadow: 0 6px 20px rgba(0,0,0,.04); }
 .review-top { display: flex; align-items: center; gap: 11px; margin-bottom: 12px; }
 .g-logo-sm { width: 32px; height: 32px; flex-shrink: 0; }
