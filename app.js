@@ -279,51 +279,6 @@ if (fTrack && fThumb) {
   updateThumb();
 }
 
-/* ===== Carrousels auto-défilants avec contrôle manuel ===== */
-function autoScroller(wrap, speed) {
-  if (!wrap) return;
-  speed = speed || 0.5;
-  let paused = false, drag = false, sx = 0, sl = 0, resumeT;
-  // Accumulateur flottant : scrollLeft est arrondi a l'entier par le navigateur,
-  // donc on ne peut pas lui ajouter 0,45 px/frame directement (ca resterait bloque).
-  let pos = wrap.scrollLeft || 0;
-  const half = () => (wrap.scrollWidth / 2) || 1;
-  const wrapPos = () => { const h = half(); if (pos >= h) pos -= h; else if (pos < 0) pos += h; };
-  const tick = () => {
-    if (!paused && wrap.scrollWidth > wrap.clientWidth + 4) {
-      pos += speed;
-      wrapPos();
-      wrap.scrollLeft = pos;
-    }
-    requestAnimationFrame(tick);
-  };
-  requestAnimationFrame(tick);
-  const softResume = () => { clearTimeout(resumeT); resumeT = setTimeout(() => { if (!drag) paused = false; }, 1400); };
-  // Survol souris : pause
-  wrap.addEventListener('mouseenter', () => { paused = true; });
-  wrap.addEventListener('mouseleave', () => { if (!drag) paused = false; });
-  // Glisser a la souris (desktop)
-  wrap.addEventListener('pointerdown', e => {
-    if (e.pointerType !== 'mouse') return;
-    drag = true; paused = true; sx = e.clientX; sl = wrap.scrollLeft;
-    wrap.classList.add('grabbing'); wrap.setPointerCapture(e.pointerId);
-  });
-  wrap.addEventListener('pointermove', e => { if (drag) { wrap.scrollLeft = sl - (e.clientX - sx); } });
-  const endDrag = () => { if (drag) { drag = false; wrap.classList.remove('grabbing'); softResume(); } };
-  wrap.addEventListener('pointerup', endDrag);
-  wrap.addEventListener('pointercancel', endDrag);
-  // Tactile + molette : defilement natif, on met juste en pause
-  wrap.addEventListener('touchstart', () => { paused = true; }, { passive: true });
-  wrap.addEventListener('touchend', softResume);
-  wrap.addEventListener('wheel', () => { paused = true; softResume(); }, { passive: true });
-  // Resynchronise l'accumulateur quand l'utilisateur fait defiler manuellement
-  wrap.addEventListener('scroll', () => { if (paused) pos = wrap.scrollLeft; }, { passive: true });
-}
-window.addEventListener('load', () => {
-  autoScroller(document.querySelector('.why-wrap'), 0.5);
-  autoScroller(document.querySelector('.reviews-wrap'), 0.45);
-});
-
 /* ===== FAQ accordion ===== */
 document.querySelectorAll('.faq-item').forEach(item => {
   const q = item.querySelector('.faq-q');
