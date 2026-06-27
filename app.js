@@ -279,6 +279,47 @@ if (fTrack && fThumb) {
   updateThumb();
 }
 
+/* ===== Carrousels : défilement auto + glisser manuel ===== */
+function autoScroller(wrap, speed) {
+  if (!wrap) return;
+  speed = speed || 0.5;
+  let paused = false, drag = false, sx = 0, sl = 0, resumeT;
+  let pos = wrap.scrollLeft || 0;
+  const half = () => (wrap.scrollWidth / 2) || 1; // exact (marges égales sur chaque carte)
+  const tick = () => {
+    if (!paused && !drag && wrap.scrollWidth > wrap.clientWidth + 4) {
+      pos += speed;
+      const h = half();
+      if (pos >= h) pos -= h; else if (pos < 0) pos += h;
+      wrap.scrollLeft = pos;
+    }
+    requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+  const softResume = () => { clearTimeout(resumeT); resumeT = setTimeout(() => { if (!drag) paused = false; }, 1600); };
+  wrap.addEventListener('mouseenter', () => { paused = true; });
+  wrap.addEventListener('mouseleave', () => { if (!drag) paused = false; });
+  // Glisser à la souris (desktop)
+  wrap.addEventListener('pointerdown', e => {
+    if (e.pointerType !== 'mouse') return;
+    drag = true; paused = true; sx = e.clientX; sl = wrap.scrollLeft;
+    wrap.classList.add('grabbing'); wrap.setPointerCapture(e.pointerId);
+  });
+  wrap.addEventListener('pointermove', e => { if (drag) { wrap.scrollLeft = sl - (e.clientX - sx); } });
+  const endDrag = () => { if (drag) { drag = false; wrap.classList.remove('grabbing'); pos = wrap.scrollLeft; softResume(); } };
+  wrap.addEventListener('pointerup', endDrag);
+  wrap.addEventListener('pointercancel', endDrag);
+  // Tactile + molette : défilement natif, on met en pause puis on reprend
+  wrap.addEventListener('touchstart', () => { paused = true; }, { passive: true });
+  wrap.addEventListener('touchend', softResume);
+  wrap.addEventListener('wheel', () => { paused = true; softResume(); }, { passive: true });
+  wrap.addEventListener('scroll', () => { if (paused) pos = wrap.scrollLeft; }, { passive: true });
+}
+window.addEventListener('load', () => {
+  autoScroller(document.querySelector('.why-wrap'), 0.5);
+  autoScroller(document.querySelector('.reviews-wrap'), 0.45);
+});
+
 /* ===== FAQ accordion ===== */
 document.querySelectorAll('.faq-item').forEach(item => {
   const q = item.querySelector('.faq-q');
