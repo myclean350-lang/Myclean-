@@ -93,7 +93,7 @@ if (devisForm) {
   };
   const CAT_LABEL = { citadine: 'Citadine / Berline', suv: 'SUV / 4x4', van: 'Van / Monospace' };
   const FORM_LABEL = { express: 'Express', sieges: 'Sièges', premium: 'Premium' };
-  const OPT_LABEL = { coffre: 'Nettoyage coffre', deplacement: 'Déplacement', poils: 'Poils / sable' };
+  const OPT_LABEL = { coffre: 'Nettoyage coffre', deplacement: 'Déplacement dans Rennes', 'deplacement-autour': 'Déplacement autour de Rennes', poils: 'Poils / sable' };
 
   const state = { vehicles: 1, categories: [], formules: [], options: {} };
   let step = 1;
