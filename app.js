@@ -258,6 +258,10 @@ if (devisForm) {
     document.getElementById('progress').style.display = 'none';
     document.getElementById('successName').textContent = d.prenom;
     document.getElementById('devisOk').classList.add('show');
+    // 4) Conversion Google Ads (demande de devis envoyée)
+    if (typeof gtag === 'function') {
+      gtag('event', 'conversion', { 'send_to': 'AW-18291127579/ibZCCNKR1ckcEJvq8ZFE' });
+    }
   });
   prevBtn.addEventListener('click', () => { if (step > 1) show(step - 1); });
   show(1);
