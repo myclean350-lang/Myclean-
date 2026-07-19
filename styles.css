@@ -280,6 +280,8 @@ nav {
 .srow .lbl { flex-grow: 1; }
 .srow .pt { color: var(--brand); font-weight: 700; }
 .srow .rcheck { opacity: 0; color: #fff; font-weight: 800; transition: opacity .15s; }
+.reco-badge { display: inline-block; background: var(--brand); color: #fff; font-size: .68rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; margin-left: 8px; vertical-align: middle; }
+.srow.selected .reco-badge { background: #fff; color: var(--brand); }
 /* Choix unique sélectionné = plein bordeaux */
 .srow.selected:not(.check) { background: var(--brand); border-color: var(--brand); color: #fff; }
 .srow.selected:not(.check) .rcheck { opacity: 1; }
