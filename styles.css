@@ -457,7 +457,7 @@ body.page-devis .actionbar { display: none; }
 }
 
 /* ===== Nettoyage canapé & textile ===== */
-.canape-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; margin-top: 36px; align-items: start; }
+.canape-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; margin-top: 36px; align-items: stretch; }
 .canape-card { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 0; overflow: hidden; box-shadow: 0 4px 14px rgba(0,0,0,.04); }
 .canape-photo { width: 100%; aspect-ratio: 3 / 2; overflow: hidden; background: #f0f0f0; }
 .canape-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
