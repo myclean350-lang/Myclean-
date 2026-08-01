@@ -267,6 +267,134 @@ if (devisForm) {
   show(1);
 }
 
+/* ===== Devis Canapé (multi-step) ===== */
+const canapeForm = document.getElementById('canapeForm');
+if (canapeForm) {
+  const PRICE = {
+    droit: { fauteuil: 30, '2': 40, '3': 50, '4': 60, '5': 70, '6': 80 },
+    angle: { '2': 50, '3': 60, '4': 70, '5': 80, '6': 90 }
+  };
+  const SIZE_LABEL = { fauteuil: 'Fauteuil', '2': '2 places', '3': '3 places', '4': '4 places', '5': '5 places', '6': '6 places' };
+  const SIZE_ORDER = { droit: ['fauteuil', '2', '3', '4', '5', '6'], angle: ['2', '3', '4', '5', '6'] };
+  const TYPE_LABEL = { droit: 'Canapé droit', angle: "Canapé d'angle" };
+
+  const state = { ctype: 'droit', csize: null };
+  let step = 1;
+  const total = 4;
+  const steps = canapeForm.querySelectorAll('.step');
+  const segs = document.querySelectorAll('#progress .seg');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const sizeList = document.getElementById('csizeList');
+  const val = id => (document.getElementById(id).value || '').trim();
+  const price = () => (state.csize ? PRICE[state.ctype][state.csize] : 0);
+
+  const refresh = () => {
+    const box = document.getElementById('cRecap');
+    if (box) box.innerHTML = state.csize
+      ? `<div class="recap-line"><span>${TYPE_LABEL[state.ctype]} — ${SIZE_LABEL[state.csize]}</span><b>${price()}€</b></div>`
+      : '';
+    const el = document.getElementById('cEstimate');
+    if (el) el.textContent = state.csize ? price() + '€' : '—';
+  };
+
+  const renderSizes = () => {
+    const prices = PRICE[state.ctype];
+    if (state.csize && !(state.csize in prices)) state.csize = null; // ex: fauteuil non dispo en angle
+    sizeList.innerHTML = SIZE_ORDER[state.ctype].map(k =>
+      `<button type="button" class="srow${state.csize === k ? ' selected' : ''}" data-val="${k}"><span class="lbl">${SIZE_LABEL[k]}</span><span class="pt">${prices[k]}€</span></button>`
+    ).join('');
+    sizeList.querySelectorAll('.srow').forEach(opt => {
+      opt.addEventListener('click', () => {
+        sizeList.querySelectorAll('.srow').forEach(o => o.classList.remove('selected'));
+        opt.classList.add('selected');
+        state.csize = opt.dataset.val;
+        refresh(); updateNav();
+      });
+    });
+  };
+
+  canapeForm.querySelectorAll('[data-single="ctype"] .srow').forEach(opt => {
+    opt.addEventListener('click', () => {
+      canapeForm.querySelectorAll('[data-single="ctype"] .srow').forEach(o => o.classList.remove('selected'));
+      opt.classList.add('selected');
+      state.ctype = opt.dataset.val;
+      renderSizes(); refresh(); updateNav();
+    });
+  });
+
+  const stepValid = () => {
+    if (step === 1) return !!state.ctype;
+    if (step === 2) return !!state.csize;
+    if (step === 3) return val('f_prenom') && val('f_nom') && val('f_tel');
+    return true;
+  };
+  const updateNav = () => { nextBtn.classList.toggle('is-disabled', !stepValid()); };
+
+  const show = n => {
+    step = n;
+    steps.forEach(s => s.classList.toggle('active', parseInt(s.dataset.step) === n));
+    segs.forEach((s, i) => s.classList.toggle('active', i < n));
+    prevBtn.classList.toggle('is-disabled', n === 1);
+    nextBtn.textContent = n === total ? 'Envoyer ma demande' : 'Suivant →';
+    if (n === total) refresh();
+    updateNav();
+  };
+
+  ['f_prenom', 'f_nom', 'f_tel', 'f_email', 'f_cp'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', updateNav);
+  });
+
+  const buildSummary = () => {
+    const L = [
+      'Nouvelle demande de devis CANAPÉ MyClean', '',
+      'Client : ' + val('f_prenom') + ' ' + val('f_nom'),
+      'Téléphone : ' + val('f_tel'),
+      'Email : ' + (val('f_email') || '—'),
+      'Code postal : ' + (val('f_cp') || '—'), '',
+      'Type : ' + TYPE_LABEL[state.ctype],
+      'Taille : ' + (state.csize ? SIZE_LABEL[state.csize] : '—'),
+      'TOTAL estimé : ' + price() + '€'
+    ];
+    if (val('f_msg')) { L.push(''); L.push('Message : ' + val('f_msg')); }
+    return L.join('\n');
+  };
+
+  const sendEmail = summary => fetch('https://formsubmit.co/ajax/contact@myclean35.com', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({
+      _subject: 'Demande de devis CANAPÉ — ' + val('f_prenom') + ' ' + val('f_nom'),
+      _captcha: 'false', _template: 'table',
+      Prénom: val('f_prenom'), Nom: val('f_nom'), Téléphone: val('f_tel'), Email: val('f_email') || '—',
+      'Code postal': val('f_cp') || '—',
+      'Type de canapé': TYPE_LABEL[state.ctype], 'Taille': state.csize ? SIZE_LABEL[state.csize] : '—',
+      'Total estimé': price() + '€', Message: val('f_msg') || '—', 'Récapitulatif': summary
+    })
+  });
+
+  nextBtn.addEventListener('click', () => {
+    if (nextBtn.classList.contains('is-disabled')) return;
+    if (step < total) { show(step + 1); return; }
+    const summary = buildSummary();
+    sendEmail(summary).catch(() => {});
+    const wa = document.getElementById('cWaBtn');
+    if (wa) wa.href = 'https://wa.me/33772396372?text=' + encodeURIComponent(summary);
+    canapeForm.style.display = 'none';
+    document.getElementById('progress').style.display = 'none';
+    document.getElementById('cSuccessName').textContent = val('f_prenom');
+    document.getElementById('cDevisOk').classList.add('show');
+    if (typeof gtag === 'function') {
+      gtag('event', 'conversion', { 'send_to': 'AW-18291127579/ibZCCNKR1ckcEJvq8ZFE' });
+    }
+  });
+  prevBtn.addEventListener('click', () => { if (step > 1) show(step - 1); });
+
+  renderSizes();
+  show(1);
+}
+
 /* ===== Carrousel formules (indicateur de défilement) ===== */
 const fTrack = document.getElementById('formulesTrack');
 const fThumb = document.getElementById('fcardsThumb');

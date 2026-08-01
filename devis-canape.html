@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18291127579"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18291127579');
+</script>
+<title>Devis nettoyage canapé — MyClean Rennes</title>
+<meta name="description" content="Estimez le nettoyage de votre canapé à domicile à Rennes en 1 minute. Canapé droit ou d'angle, devis en ligne gratuit et sans engagement." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css?v=49" />
+<link rel="icon" type="image/png" href="assets/logo-mark.png" />
+</head>
+<body class="page-devis">
+
+<!-- NAVBAR -->
+<nav>
+  <div class="container nav-inner">
+    <a href="index.html" class="logo">
+      <span><b>My</b><b class="c">Clean</b></span>
+    </a>
+    <div class="nav-desktop">
+      <a href="formules.html">Voiture</a>
+      <a href="canape.html" class="active">Canapé</a>
+      <a href="formules.html#realisations">Réalisations</a>
+      <a href="index.html#avis">Avis</a>
+      <a href="contact.html">Contact</a>
+      <a href="devis.html" class="nav-cta">Devis</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="formules.html">Voiture</a>
+  <a href="canape.html" class="active">Canapé</a>
+  <a href="formules.html#realisations">Réalisations</a>
+  <a href="index.html#avis">Avis</a>
+  <a href="contact.html#faq">FAQ</a>
+  <a href="contact.html">Contact</a>
+  <a href="devis.html" class="cta">Demander un devis</a>
+</div>
+
+<!-- DEVIS CANAPÉ -->
+<section class="page-head">
+  <div class="container center reveal">
+    <span class="eyebrow">Devis canapé en ligne</span>
+    <h1 class="s-title">Votre devis canapé en <span class="c">1 minute.</span></h1>
+    <p class="s-sub">Réponse rapide. Sans engagement.</p>
+  </div>
+  <div class="container">
+    <div class="devis-card reveal">
+      <div class="progress" id="progress">
+        <span class="seg active"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span>
+      </div>
+      <form id="canapeForm" onsubmit="return false;">
+
+        <!-- ÉTAPE 1 : Type -->
+        <div class="step active" data-step="1">
+          <div class="q-head"><span class="q-step">Étape 1 / 4</span><span class="q-name">Type</span></div>
+          <h3 class="q-title">Quel type de canapé ?</h3>
+          <div class="select-list" data-single="ctype">
+            <button type="button" class="srow selected" data-val="droit"><span class="lbl">Canapé droit</span><span class="pt">dès 30€</span></button>
+            <button type="button" class="srow" data-val="angle"><span class="lbl">Canapé d'angle</span><span class="pt">dès 50€</span></button>
+          </div>
+        </div>
+
+        <!-- ÉTAPE 2 : Taille -->
+        <div class="step" data-step="2">
+          <div class="q-head"><span class="q-step">Étape 2 / 4</span><span class="q-name">Taille</span></div>
+          <h3 class="q-title">Nombre de places</h3>
+          <p class="q-sub">Sélectionnez la taille de votre canapé.</p>
+          <div class="select-list" data-single="csize" id="csizeList"></div>
+        </div>
+
+        <!-- ÉTAPE 3 : Vos infos -->
+        <div class="step" data-step="3">
+          <div class="q-head"><span class="q-step">Étape 3 / 4</span><span class="q-name">Vos infos</span></div>
+          <div class="field"><label>Prénom</label><input type="text" id="f_prenom" placeholder="Jean" /></div>
+          <div class="field"><label>Nom</label><input type="text" id="f_nom" placeholder="Dupont" /></div>
+          <div class="field"><label>Email</label><input type="email" id="f_email" placeholder="jean.dupont@email.com" /></div>
+          <div class="field"><label>Téléphone</label><input type="tel" id="f_tel" placeholder="06 12 34 56 78" /></div>
+          <div class="field"><label>Code postal</label><input type="text" id="f_cp" placeholder="35000" /></div>
+        </div>
+
+        <!-- ÉTAPE 4 : Estimation -->
+        <div class="step" data-step="4">
+          <div class="q-head"><span class="q-step">Étape 4 / 4</span><span class="q-name">Estimation</span></div>
+          <h3 class="q-title">Récapitulatif de votre devis</h3>
+          <p class="q-sub">Vérifiez votre sélection avant l'envoi.</p>
+          <div class="field" style="margin-top:8px;"><label>Message (facultatif)</label><textarea id="f_msg" placeholder="Plusieurs canapés, taches particulières, disponibilités…"></textarea></div>
+          <div class="recap" id="cRecap"></div>
+          <div class="estimate"><span class="lbl">Total estimé :</span><span class="val" id="cEstimate">—</span></div>
+          <p class="q-note">Tarif indicatif — le devis définitif est confirmé par l'équipe selon l'état et la matière du canapé.</p>
+        </div>
+
+        <div class="step-nav">
+          <button type="button" class="btn btn-outline" id="prevBtn">← Retour</button>
+          <button type="button" class="btn btn-primary" id="nextBtn">Suivant →</button>
+        </div>
+      </form>
+      <div class="devis-ok" id="cDevisOk">
+        <div class="okic">✓</div>
+        <h3>Demande envoyée !</h3>
+        <p>Merci <span id="cSuccessName"></span>, votre demande de devis canapé a bien été envoyée. L'équipe MyClean vous recontacte très vite.</p>
+        <a id="cWaBtn" href="https://wa.me/33772396372" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:22px;">Envoyer aussi sur WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">My<span class="c">Clean</span></div>
+        <p>Nettoyage intérieur automobile et nettoyage de canapé à domicile à Rennes et ses alentours. Matériel professionnel, résultat garanti.</p>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <a href="tel:+33954417407">09 54 41 74 07</a>
+        <a href="tel:+33772396372">07 72 39 63 72</a>
+        <a href="mailto:contact@myclean35.com">contact@myclean35.com</a>
+        <p>La Harpe, 35000 Rennes</p>
+        <p>Instagram & Facebook : @MYCLEAN35</p>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 MyClean — Tous droits réservés. Nettoyage automobile &amp; canapé à domicile · Rennes.</div>
+  </div>
+</footer>
+
+<!-- ACTION BAR (mobile) -->
+<div class="actionbar">
+  <a href="tel:+33772396372" class="btn btn-outline">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.2 2.2z" fill="#171717"/></svg>
+    Appeler
+  </a>
+  <a href="devis-canape.html" class="btn btn-primary">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8l-5-5z" stroke="#fff" stroke-width="2" stroke-linejoin="round"/><path d="M14 3v5h5" stroke="#fff" stroke-width="2" stroke-linejoin="round"/></svg>
+    Devis
+  </a>
+</div>
+
+<script src="app.js?v=49"></script>
+</body>
+</html>
