@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css?v=51" />
+<link rel="stylesheet" href="styles.css?v=52" />
 <link rel="icon" type="image/png" href="assets/logo-mark.png" />
 </head>
 <body>
@@ -120,63 +120,76 @@
     <p class="s-sub">Glissez le curseur pour découvrir la différence.</p>
   </div>
   <div class="container">
-    <div class="ba-grid">
-      <div class="ba-item reveal">
+    <div class="ba-carousel" id="baCarousel">
+      <div class="ba-slide active">
         <div class="ba-slider" data-ba>
           <div class="ba-layer ba-after" style="background:url('assets/ba-canape1-apres.jpg') center/cover"></div>
           <div class="ba-layer ba-before" style="background:url('assets/ba-canape1-avant.jpg') center/cover"></div>
           <span class="ba-tag b">Avant</span><span class="ba-tag a">Après</span><div class="ba-handle"></div>
         </div>
-        <h4>Canapé tissu — taches incrustées</h4><p>Salissures et auréoles éliminées à Vezin-le-Coquet</p>
+        <p class="ba-cap">Canapé tissu — taches incrustées <span>Salissures et auréoles éliminées à Vezin-le-Coquet</span></p>
       </div>
-      <div class="ba-item reveal">
+      <div class="ba-slide">
         <div class="ba-slider" data-ba>
           <div class="ba-layer ba-after" style="background:url('assets/ba-canape2-apres.jpg') center/cover"></div>
           <div class="ba-layer ba-before" style="background:url('assets/ba-canape2-avant.jpg') center/cover"></div>
           <span class="ba-tag b">Avant</span><span class="ba-tag a">Après</span><div class="ba-handle"></div>
         </div>
-        <h4>Canapé gris — assise encrassée</h4><p>Tissu ravivé, taches éliminées en profondeur</p>
+        <p class="ba-cap">Canapé gris — assise encrassée <span>Tissu ravivé, taches éliminées en profondeur</span></p>
       </div>
-      <div class="ba-item reveal">
+      <div class="ba-slide">
         <div class="ba-slider" data-ba>
           <div class="ba-layer ba-after" style="background:url('assets/ba-canape3-apres.jpg') center/cover"></div>
           <div class="ba-layer ba-before" style="background:url('assets/ba-canape3-avant.jpg') center/cover"></div>
           <span class="ba-tag b">Avant</span><span class="ba-tag a">Après</span><div class="ba-handle"></div>
         </div>
-        <h4>Canapé beige — accoudoir encrassé</h4><p>Salissures parties, tissu comme neuf</p>
+        <p class="ba-cap">Canapé beige — accoudoir encrassé <span>Salissures parties, tissu comme neuf</span></p>
       </div>
-      <div class="ba-item reveal">
+      <div class="ba-slide">
         <div class="ba-slider" data-ba>
           <div class="ba-layer ba-after" style="background:url('assets/ba-canape4-apres.jpg') center/cover"></div>
           <div class="ba-layer ba-before" style="background:url('assets/ba-canape4-avant.jpg') center/cover"></div>
           <span class="ba-tag b">Avant</span><span class="ba-tag a">Après</span><div class="ba-handle"></div>
         </div>
-        <h4>Canapé beige — auréoles</h4><p>Taches et auréoles éliminées en profondeur</p>
+        <p class="ba-cap">Canapé beige — auréoles <span>Taches et auréoles éliminées en profondeur</span></p>
       </div>
-      <div class="ba-item reveal">
+      <div class="ba-slide">
         <div class="ba-slider" data-ba>
           <div class="ba-layer ba-after" style="background:url('assets/ba-canape5-apres.jpg') center/cover"></div>
           <div class="ba-layer ba-before" style="background:url('assets/ba-canape5-avant.jpg') center/cover"></div>
           <span class="ba-tag b">Avant</span><span class="ba-tag a">Après</span><div class="ba-handle"></div>
         </div>
-        <h4>Canapé anthracite — méridienne</h4><p>Taches et auréoles éliminées</p>
+        <p class="ba-cap">Canapé anthracite — méridienne <span>Taches et auréoles éliminées</span></p>
       </div>
-      <div class="ba-item reveal">
+      <div class="ba-slide">
         <div class="ba-static">
           <img src="assets/red-avant.jpg" alt="Canapé rouge très taché avant nettoyage — MyClean Rennes" loading="lazy" />
           <img src="assets/red-apres.jpg" alt="Canapé rouge propre après nettoyage — MyClean Rennes" loading="lazy" />
           <span class="ba-tag b">Avant</span><span class="ba-tag a">Après</span>
         </div>
-        <h4>Canapé rouge — taches incrustées</h4><p>Assise redevenue éclatante</p>
+        <p class="ba-cap">Canapé rouge — taches incrustées <span>Assise redevenue éclatante</span></p>
       </div>
-      <div class="ba-item reveal">
+      <div class="ba-slide">
         <div class="ba-static">
           <img src="assets/beige-avant.jpg" alt="Canapé beige avec auréoles avant nettoyage — MyClean Rennes" loading="lazy" />
           <img src="assets/beige-apres.jpg" alt="Canapé beige propre après nettoyage — MyClean Rennes" loading="lazy" />
           <span class="ba-tag b">Avant</span><span class="ba-tag a">Après</span>
         </div>
-        <h4>Canapé beige — auréoles d'eau</h4><p>Taches profondes éliminées</p>
+        <p class="ba-cap">Canapé beige — auréoles d'eau <span>Taches profondes éliminées</span></p>
       </div>
+    </div>
+    <div class="ba-nav">
+      <button class="ba-prev" type="button" aria-label="Résultat précédent">‹</button>
+      <div class="ba-dots">
+        <button type="button" class="active" aria-label="Résultat 1"></button>
+        <button type="button" aria-label="Résultat 2"></button>
+        <button type="button" aria-label="Résultat 3"></button>
+        <button type="button" aria-label="Résultat 4"></button>
+        <button type="button" aria-label="Résultat 5"></button>
+        <button type="button" aria-label="Résultat 6"></button>
+        <button type="button" aria-label="Résultat 7"></button>
+      </div>
+      <button class="ba-next" type="button" aria-label="Résultat suivant">›</button>
     </div>
     <div class="center" style="margin-top:40px;">
       <a href="devis-canape.html" class="btn btn-primary">Demander un devis canapé</a>
@@ -230,6 +243,6 @@
   </a>
 </div>
 
-<script src="app.js?v=51"></script>
+<script src="app.js?v=52"></script>
 </body>
 </html>
