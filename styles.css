@@ -171,6 +171,15 @@ nav {
 .ba-slide .plan { max-width: 420px; margin: 0 auto; }
 .ba-cap { text-align: center; margin-top: 14px; font-weight: 600; color: var(--ink); }
 .ba-cap span { display: block; color: var(--muted); font-weight: 400; font-size: .85rem; margin-top: 2px; }
+/* Grands écrans (tablette / ordinateur) : photo plus grande + légende aérée */
+@media (min-width: 768px) {
+  .ba-slide .ba-slider, .ba-slide .ba-static { max-width: 560px; }
+  .ba-cap { margin-top: 24px; font-size: 1.05rem; }
+  .ba-cap span { font-size: .92rem; margin-top: 4px; }
+}
+@media (min-width: 1200px) {
+  .ba-slide .ba-slider, .ba-slide .ba-static { max-width: 640px; }
+}
 .ba-nav { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 14px; }
 .ba-prev, .ba-next { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: #fff; cursor: pointer; font-size: 1.5rem; line-height: 1; color: var(--ink); display: flex; align-items: center; justify-content: center; transition: .2s; }
 .ba-prev:hover, .ba-next:hover { border-color: var(--brand); color: var(--brand); }
