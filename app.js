@@ -37,23 +37,23 @@ document.querySelectorAll('[data-ba]').forEach(slider => {
   slider.addEventListener('touchend', () => active = false);
 });
 
-/* ===== Carrousel Avant/Après (Zone) ===== */
-const baCar = document.getElementById('baCarousel');
-if (baCar) {
+/* ===== Carrousels Avant/Après (supporte plusieurs par page) ===== */
+document.querySelectorAll('.ba-carousel').forEach(baCar => {
   const slides = baCar.querySelectorAll('.ba-slide');
-  const dots = document.querySelectorAll('.ba-dots button');
+  const nav = baCar.nextElementSibling && baCar.nextElementSibling.classList.contains('ba-nav') ? baCar.nextElementSibling : null;
+  const dots = nav ? nav.querySelectorAll('.ba-dots button') : [];
   let idx = 0;
   const show = i => {
     idx = (i + slides.length) % slides.length;
     slides.forEach((s, n) => s.classList.toggle('active', n === idx));
     dots.forEach((d, n) => d.classList.toggle('active', n === idx));
   };
-  const prev = document.querySelector('.ba-prev');
-  const next = document.querySelector('.ba-next');
+  const prev = nav ? nav.querySelector('.ba-prev') : null;
+  const next = nav ? nav.querySelector('.ba-next') : null;
   if (prev) prev.addEventListener('click', () => show(idx - 1));
   if (next) next.addEventListener('click', () => show(idx + 1));
   dots.forEach((d, n) => d.addEventListener('click', () => show(n)));
-}
+});
 
 /* ===== Reviews carousel ===== */
 const reviews = [
