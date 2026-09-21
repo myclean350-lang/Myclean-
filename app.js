@@ -87,9 +87,9 @@ const devisForm = document.getElementById('devisForm');
 if (devisForm) {
   // Tarifs : prix par formule ET par modèle de véhicule
   const PRICE = {
-    express: { citadine: 20, suv: 20, van: 20 },
-    sieges:  { citadine: 40, suv: 40, van: 40 },
-    premium: { citadine: 60, suv: 70, van: 80 }
+    express: { citadine: 28, suv: 28, van: 28 },
+    sieges:  { citadine: 65, suv: 65, van: 65 },
+    premium: { citadine: 79, suv: 89, van: 99 }
   };
   const CAT_LABEL = { citadine: 'Citadine / Berline', suv: 'SUV / 4x4', van: 'Van / Monospace' };
   const FORM_LABEL = { express: 'Express', sieges: 'Sièges', premium: 'Premium' };
@@ -271,8 +271,8 @@ if (devisForm) {
 const canapeForm = document.getElementById('canapeForm');
 if (canapeForm) {
   const PRICE = {
-    droit: { fauteuil: 30, '2': 40, '3': 50, '4': 60, '5': 70, '6': 80 },
-    angle: { '2': 50, '3': 60, '4': 70, '5': 80, '6': 90 }
+    droit: { fauteuil: 35, '2': 55, '3': 65, '4': 75, '5': 85, '6': 95 },
+    angle: { '2': 65, '3': 75, '4': 85, '5': 95, '6': 105 }
   };
   const SIZE_LABEL = { fauteuil: 'Fauteuil', '2': '2 places', '3': '3 places', '4': '4 places', '5': '5 places', '6': '6 places' };
   const SIZE_ORDER = { droit: ['fauteuil', '2', '3', '4', '5', '6'], angle: ['2', '3', '4', '5', '6'] };
