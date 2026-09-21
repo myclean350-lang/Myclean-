@@ -87,7 +87,7 @@ const devisForm = document.getElementById('devisForm');
 if (devisForm) {
   // Tarifs : prix par formule ET par modèle de véhicule
   const PRICE = {
-    express: { citadine: 28, suv: 28, van: 28 },
+    express: { citadine: 35, suv: 35, van: 35 },
     sieges:  { citadine: 65, suv: 65, van: 65 },
     premium: { citadine: 79, suv: 89, van: 99 }
   };
