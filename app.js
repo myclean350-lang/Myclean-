@@ -1,3 +1,10 @@
+/* ===== Capture GCLID (suivi des leads qualifiés Google Ads) ===== */
+(() => {
+  const gclid = new URLSearchParams(window.location.search).get('gclid');
+  if (gclid) { try { localStorage.setItem('myclean_gclid', gclid); } catch (e) {} }
+})();
+const getGclid = () => { try { return localStorage.getItem('myclean_gclid') || ''; } catch (e) { return ''; } };
+
 /* ===== Burger / mobile menu ===== */
 const burger = document.getElementById('burger');
 const mobileMenu = document.getElementById('mobileMenu');
@@ -237,7 +244,7 @@ if (devisForm) {
         'Code postal': d.cp || '—', 'Nombre de véhicules': String(d.vehicules),
         'Catégorie(s)': d.categories, 'Formule(s)': d.formules, 'Extras': d.extras,
         'Total estimé': d.totalPrice + '€', 'Récapitulatif': summary,
-        Message: d.message || '—'
+        Message: d.message || '—', GCLID: getGclid() || '—'
       })
     });
   };
@@ -370,7 +377,8 @@ if (canapeForm) {
       Prénom: val('f_prenom'), Nom: val('f_nom'), Téléphone: val('f_tel'), Email: val('f_email') || '—',
       'Code postal': val('f_cp') || '—',
       'Type de canapé': TYPE_LABEL[state.ctype], 'Taille': state.csize ? SIZE_LABEL[state.csize] : '—',
-      'Total estimé': price() + '€', Message: val('f_msg') || '—', 'Récapitulatif': summary
+      'Total estimé': price() + '€', Message: val('f_msg') || '—', 'Récapitulatif': summary,
+      GCLID: getGclid() || '—'
     })
   });
 
